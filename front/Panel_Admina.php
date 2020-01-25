@@ -344,93 +344,33 @@ $(document).ready(function(){
                         <th>Akcja</th>
                     </tr>
                 </thead>
-                <tbody>
-				<tr>
+                <tbody>							
+					<?php 
+					if(is_array($json)){ 
+						$tab = $json['data'];
+						foreach($tab as $r => $dane){ ?>
+					<tr>
 						<form action="repertuar_del.php" method="POST">
-						<?php 
-						if(is_array($json)){ 
-							$tab [] = $json['data'];
-							foreach($tab as $r => $dane){ ?>
-						<td>
-						<span class="custom-checkbox">
-								<input type="checkbox" >
-								<label for="selectAll"></label>
-							</span>
-						</td>
-						<td>  <?php echo($dane[$r]['imie']);  ?></td>
-						<td> <?php  ?></td>
-						<td> <?php  ?></td>
-						<td>	 <?php  ?></td>
-                        
-                            <td>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr><?php 
-							 }} ?>
-                    <tr>
-						<td>
+							<td>
 							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-						</td>
-                        <td>Beata Banot</td>
-                        <td>laland@mail.com</td>
-						<td>Pracownik</td>
-                        <td>Pracownik2</td>
-                        <td>
-                            
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-						</td>
-                        <td>Maria Daria</td>
-                        <td>mariaanders@mail.com</td>
-						<td>Klient</td>
-                        <td>Marycha23</td>
-                        <td>
-                            
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-							</span>
-						</td>
-                        <td>Piotr Kowalski</td>
-                        <td>franwilson@mail.com</td>
-						<td>Klient</td>
-                        <td>Germen111</td>
-                        <td>
-                            
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr>					
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-                        <td>Hermenegilda Bonifacy</td>
-                        <td>abc@mail.com</td>
-						<td>Pracownik</td>
-                        <td>Pracownik1</td>
-                        <td>
-                            
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                        </td>
-                    </tr> 
+									<input type="checkbox" >
+									<label for="selectAll"></label>
+								</span>
+							</td>
+							<td><?php echo($dane['imie']); ?></td>
+							<td><?php echo($dane['email']); ?></td>
+							<td><?php 
+								if($dane['login'] == 0) echo("Klient"); 
+								if($dane['login'] == 1) echo("Pracownik"); 
+								if($dane['login'] == 2) echo("Administrator"); 
+							?></td>
+							<td><?php echo($dane['login']); ?></td>
+							<td>
+								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</form>
+					</tr>
+				<?php  }} ?>
                 </tbody>
             </table>
 		
