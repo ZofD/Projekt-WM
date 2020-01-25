@@ -38,6 +38,12 @@ $_SESSION['dataRep'] = $json['repertuar']['data'];
 $_SESSION['idSali'] = $json['repertuar']['id_saliFKRep'];
 $_SESSION['idRepertuaru'] = $json['repertuar']['id_repertuaru'];
 
+$urlMiejsca = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/rezerwacje/read_miejsca.php';
+$wyslijRep['idRepertuaru'] = $_SESSION['idRepertuaru'];
+$chM = new ClientURL();
+$chM->setPostURL($urlMiejsca, json_encode($wyslijRep));
+$jsonMiejsca = json_decode($chM->exec(), TRUE);
+// var_dump($jsonMiejsca);
 
 use phpDocumentor\Reflection\Types\String_;
 
@@ -136,7 +142,25 @@ $liczbaRzedow = 10;
                         for($j = 0; $j < $liczbaRzedow; $j++){
                             echo "<tr>";
                                 for($i = 0; $i < $liczbaMiejscRzedu; $i++){
-                                    echo "<td class='displayerBoxes'><input type='checkbox' name='miejsca[]' class='seats' value='".($j*10+$i)."'></td>";
+                                    $numerM = $j*10+$i;
+                                    $zajete = FALSE;
+                                    for($x = 0; $x < count($jsonMiejsca); $x++){
+                                        // echo "jsonMiejsca[$x] = ".$jsonMiejsca[$x]." numerM = ".$numerM." ";
+                                        if(intval($jsonMiejsca[$x]) == $numerM){
+                                            // echo "True<br/>";
+                                            $zajete = TRUE;
+                                            break;
+                                        }
+                                        // else{
+                                        //     echo "False";
+                                        // }
+                                        // echo "<br/>";
+                                    }
+                                    if($zajete){
+                                        echo "<td class='displayerBoxes'><input type='checkbox' name='miejsca[]' class='seats' value='".($j*10+$i)."' disabled='disabled'></td>";
+                                    }else{
+                                        echo "<td class='displayerBoxes'><input type='checkbox' name='miejsca[]' class='seats' value='".($j*10+$i)."'></td>";
+                                    }
                                 }
                             echo "</tr>";
                         }
