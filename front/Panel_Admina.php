@@ -6,7 +6,20 @@ if (!isset($_SESSION['inicjuj']))
 	session_regenerate_id();
 	$_SESSION['inicjuj'] = true;
 	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+
 }
+
+$_SESSION['urlBool'] = FALSE;
+
+include_once 'curl.php';
+
+$url = 'http://localhost:8080/WM/projekt/Projekt-WM/API/uzytkownicy/read.php';
+
+$ch = new ClientURL();
+
+$ch->setGetURL($url);
+$rezult = $ch->exec();
+$json = json_decode($rezult, TRUE);
 
 
 ?>
@@ -332,22 +345,28 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+				<tr>
+						<form action="repertuar_del.php" method="POST">
+						<?php 
+						if(is_array($json)){ 
+							$tab [] = $json['data'];
+							foreach($tab as $r => $dane){ ?>
 						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
+						<span class="custom-checkbox">
+								<input type="checkbox" >
+								<label for="selectAll"></label>
 							</span>
 						</td>
-                        <td>Walenty Potter</td>
-                        <td>hogwart@mail.com</td>
-						<td>Klient</td>
-                        <td>aezakmi22</td>
-                        <td>
-                            
+						<td>  <?php echo($dane[$r]['imie']);  ?></td>
+						<td> <?php  ?></td>
+						<td> <?php  ?></td>
+						<td>	 <?php  ?></td>
+                        
+                            <td>
                             <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                         </td>
-                    </tr>
+                    </tr><?php 
+							 }} ?>
                     <tr>
 						<td>
 							<span class="custom-checkbox">
