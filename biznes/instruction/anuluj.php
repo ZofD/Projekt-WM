@@ -41,7 +41,7 @@
     $ch->setPostURL($urlBaza, json_encode(array("idRezerwacji" => $idRezerwacji)));
     $result = $ch->exec();
     $odpAPI = json_decode($result, TRUE);
-var_dump($odpAPI);
+    var_dump($odpAPI);
     if($odpAPI['odp']){
 
         $json = json_decode(file_get_contents("miejsca.json"), TRUE);
