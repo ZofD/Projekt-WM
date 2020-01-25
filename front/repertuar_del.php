@@ -11,11 +11,11 @@ session_start();
 
 include_once 'curl.php';
 
+// var_dump($_POST);
+$id_repertuatu = $_POST["id_repertuaru"];
+$id_repertuatu = intval($id_repertuatu);
+// var_dump($id_repertuatu);
 
-$id_repertuatu = $_POST['id_repertuatu'];
-
-
-//porównanie haseł
 
 $ch = new ClientURL();
 
@@ -29,7 +29,7 @@ $wynik = $ch->exec();
 
 $json = json_decode($wynik, TRUE);
 
-if($json['message']){
+if($json['odp']){
     header('Location: index.php');
 }else{
 	header('Location: register.php');

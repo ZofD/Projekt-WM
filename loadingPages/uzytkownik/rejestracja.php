@@ -16,5 +16,8 @@ $ch->setPostURL($url, $dataToAppi);
 $rezult = $ch->exec();
 
 $json = json_decode($rezult, true);
-var_dump($json);
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 echo json_encode($json);

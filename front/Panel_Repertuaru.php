@@ -344,10 +344,11 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><form action="repertuar_del.php" method="POST">
+                    <tr>
 						<?php
 						if(is_array($json)){
 							foreach($json as $r => $dane){ ?>
+							<form action="repertuar_del.php" method="POST">
 							<th> <span class="custom-checkbox">
 								<input type="checkbox" >
 								<label for="selectAll"></label>
@@ -356,10 +357,10 @@ $(document).ready(function(){
 							 <th><?php echo($dane['data']); ?></th><td>
 							 
 							
-							 <a href="#deleteFilmModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Usuń">&#xE872;</i></a></form>    </td>
+							 <input style="color:black" type="submit" name="id_repertuaru" value="<?php echo($dane['id_repertuaru']);?>" data-toggle="modal" class="delete"><i  class="material-icons" data-toggle="tooltip" title="Usuń">&#xE872;</i></input></form>
                     </tr>
 							 <?php 
-							 }} ?></form>
+							 }} ?>
                         
 						
                         

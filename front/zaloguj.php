@@ -15,6 +15,9 @@ session_start();
 	// 	die('Proba przejecia sesji udaremniona!');	
 	// }
 
+    $login = $_POST["login"];
+    $password = $_POST["password"];
+
     include_once 'curl.php';
 
     $url = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/uzytkownik/logowanie.php';
@@ -24,21 +27,18 @@ session_start();
     header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-    $login = $_POST["login"];
-    $password = $_POST["password"];
-
     $ch = new ClientURL();
 
     $dataToAppi = array('login' => $login, 'password' => $password);
+    $dataToAppi = json_encode($dataToAppi);
     $ch->setPostURL($url, $dataToAppi);
     $zaloguj = $ch->exec();
 
-    var_dump($zaloguj);
+    $zaloguj=json_decode($zaloguj, TRUE);
 
-    if($zaloguj[0] == "user nie istnieje") $_SESSION['zalogowany'] = false;
-    else $_SESSION['zalogowany'] = true;
-
-    if ((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany'] == true)){
+    if ($zaloguj['weryfikacja']){
+        $_SESSION['zalogowany'] = true;
+        $_SESSION['errorLogowanie'] = FALSE;
         // $_SESSION['admin'] == 0;
         // $_SESSION['login'] == "Roman";
         $_SESSION['idUzytkownika'] = $zaloguj['id_uzytkownika'];  
@@ -56,5 +56,9 @@ session_start();
             header('Location: '.$_SESSION['url']);
         }
 		exit();
-	}
+	}else{
+        $_SESSION['zalogowany'] = false;
+        $_SESSION['errorLogowanie'] = TRUE;
+        header('Location: logowanie.php');
+    }
 ?>

@@ -85,8 +85,13 @@
 						
 					
 					
-					<form action="zaloguj.php" methos="POST">
-
+  <form action="zaloguj.php" method="POST">
+<?php
+	if(isset($_SESSION['errorLogowanie']) && $_SESSION['errorLogowanie']){
+		header('Location: info2.php');
+		unset($_SESSION['errorLogowanie']);
+	}
+?>
   <input type="login" name="login" class="login-username" autofocus="true" required="true" placeholder="Login" />
   <input type="password" name="password" class="login-password" required="true" placeholder="Hasło" />
   <input type="submit" name="LoginButton" value="Login" class="login-submit" />
