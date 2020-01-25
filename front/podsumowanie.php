@@ -29,6 +29,9 @@ $listonosz['data'] = $_SESSION['tytul'];//tytul
 
 $dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
 
+
+foreach($_POST['miejsca'] as $r => $dane) $miejscaZ [] = intval($dane);
+
 $listonosz['godz'] = intval($dataRep->format('H'));
 $listonosz['min'] = intval($dataRep->format('i'));
 $listonosz['miesiac'] = intval($dataRep->format('m'));
@@ -37,7 +40,7 @@ $listonosz['rok'] = intval($dataRep->format('Y'));
 $listonosz['idSali'] = intval($_SESSION['idSali']);
 $listonosz['imie'] = $_POST['imie'];
 $listonosz['nazwisko'] = $_POST['nazwisko'];
-$listonosz['miejsca'] = $_POST['miejsca'];
+$listonosz['miejsca'] = $miejscaZ;
 $listonosz['iloscUczen'] = intval($_POST['iloscSzkolne']);
 $listonosz['iloscStudent'] = intval($_POST['iloscStudent']);
 $listonosz['idRepertuaru'] = intval($_SESSION['idRepertuaru']);
@@ -47,7 +50,7 @@ $ch->setPostURL($urlBiznes, json_encode($listonosz));
 $fromBiznesString = $ch->exec();
 $fromBiznes = json_decode($fromBiznesString, TRUE);
 // var_dump($fromBiznesString);
-var_dump($fromBiznes);
+// var_dump($fromBiznes);
 $cena = 0.0;
 if($fromBiznes['rezerwacja']){
 	$cena = $fromBiznes['cena'];
