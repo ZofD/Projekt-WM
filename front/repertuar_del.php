@@ -14,23 +14,23 @@ include_once 'curl.php';
 
 $id_repertuatu = $_POST['id_repertuatu'];
 
-
-//porównanie haseł
-
-$ch = new ClientURL();
+var_dump($_POST);
 
 
-$url = 'http://localhost:8080/WM/projekt/Projekt-WM/API/repertuar/delete.php';
-$arrayData = array('id_repertuaru' => $id_repertuatu);
-$dataToAppi = json_encode($arrayData);
+// $ch = new ClientURL();
 
-$ch->setPostURL($url, $dataToAppi);
-$wynik = $ch->exec();
 
-$json = json_decode($wynik, TRUE);
+// $url = 'http://localhost:8080/WM/projekt/Projekt-WM/API/repertuar/delete.php';
+// $arrayData = array('id_repertuaru' => $id_repertuatu);
+// $dataToAppi = json_encode($arrayData);
 
-if($json['message']){
-    header('Location: index.php');
-}else{
-	header('Location: register.php');
+// $ch->setPostURL($url, $dataToAppi);
+// $wynik = $ch->exec();
+
+// $json = json_decode($wynik, TRUE);
+
+// if($json['message']){
+//     header('Location: index.php');
+// }else{
+// 	header('Location: register.php');
 }

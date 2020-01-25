@@ -17,7 +17,7 @@ $repertuar = new Repertuar($db);
 try{
     $data = json_decode(file_get_contents('php://input'), TRUE);
 
-    $repertuar->id_repertuaru = $data['idRepertuaru'];
+    $repertuar->id_repertuaru = $data['id_repertuaru'];
 
     //utworz uzytkownika
     if($repertuar->deleteRepertuarById()){
