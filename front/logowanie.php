@@ -88,7 +88,7 @@
   <form action="zaloguj.php" method="POST">
 <?php
 	if(isset($_SESSION['errorLogowanie']) && $_SESSION['errorLogowanie']){
-		echo "<p>Błędny login lub hasło!</p>";
+		header('Location: info2.php');
 		unset($_SESSION['errorLogowanie']);
 	}
 ?>
