@@ -64,8 +64,8 @@ if(isset($_POST['miejsca']) && isset($_POST['imie']) && isset($_POST['nazwisko']
 	$imie = $_POST['imie'];
 	$nazwisko = $_POST['nazwisko'];
 	$miejsca = $_POST['miejsca'];
-	$iloscSzkolne = $_POST['iloscSzkolne'];
-	$iloscStudenckie = $_POST['iloscStudent'];
+	$iloscSzkolne = intval($_POST['iloscSzkolne']);
+	$iloscStudenckie = intval($_POST['iloscStudent']);
 }
 else
 {

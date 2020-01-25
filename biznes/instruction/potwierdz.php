@@ -54,6 +54,6 @@
     if($odpAPI['Rezerwacja']){
         echo json_encode(array('odp' => TRUE, 'idRezerwacji' => $odpAPI['idRezerwacji']));
     }else{
-        echo json_encode(array("odp" => FALSE));
+        echo json_encode(array('odp' => FALSE));
     }
 ?>
