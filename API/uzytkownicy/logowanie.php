@@ -21,7 +21,7 @@ try{
 
     $user->login = $data->login;
     $user->password = $data->password;
-
+    
     //utworz uzytkownika
     if($user->logowanie()){
 

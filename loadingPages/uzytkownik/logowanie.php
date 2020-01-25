@@ -19,6 +19,7 @@ $json = json_decode($rezult, true);
 
 $login = $json['loginW'];
 
+
 //naglowek
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
@@ -54,7 +55,7 @@ if($login){
         $putArray = json_encode($arr_data, true);
 
         file_put_contents("uzytkownicy.json", $putArray);
-
+        $json[0]['weryfikacja'] = TRUE;
         echo json_encode($json[0], true);
 
     }catch(Exception $e){
