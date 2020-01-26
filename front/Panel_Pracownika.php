@@ -324,7 +324,7 @@ $(document).ready(function(){
 						<h2>Zarzadzanie <b>Rezerwacjami</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="index.php" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Dodaj nowa rezerwacje</span></a>
+					<a href="index.php" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Dodaj nową rezerwację</span></a>
 										
 					</div>
                 </div>
