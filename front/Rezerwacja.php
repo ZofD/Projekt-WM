@@ -143,21 +143,23 @@ $liczbaRzedow = 10;
                         // var_dump($jsonMiejsca);
                         for($j = 0; $j < $liczbaRzedow; $j++){
                             echo "<tr>";
+                            
                                 for($i = 0; $i < $liczbaMiejscRzedu; $i++){
                                     $numerM = $j*10+$i;
                                     $zajete = FALSE;
-                                    for($x = 0; $x < count($jsonMiejsca); $x++){
-                                        // echo "jsonMiejsca[$x] = ".$jsonMiejsca[$x]." numerM = ".$numerM." ";
-                                        if(intval($jsonMiejsca[$x]) == $numerM){
-                                            // echo "True<br/>";
-                                            $zajete = TRUE;
-                                            break;
+                                    if($jsonMiejsca != null)
+                                        for($x = 0; $x < count($jsonMiejsca); $x++){
+                                            // echo "jsonMiejsca[$x] = ".$jsonMiejsca[$x]." numerM = ".$numerM." ";
+                                            if(intval($jsonMiejsca[$x]) == $numerM){
+                                                // echo "True<br/>";
+                                                $zajete = TRUE;
+                                                break;
+                                            }
+                                            // else{
+                                            //     echo "False";
+                                            // }
+                                            // echo "<br/>";
                                         }
-                                        // else{
-                                        //     echo "False";
-                                        // }
-                                        // echo "<br/>";
-                                    }
                                     if($zajete){
                                         echo "<td class=''><input type='checkbox' name='miejsca[]' class='seats rez' value='".($j*10+$i)."'></td>";
                                     }else{

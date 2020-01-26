@@ -45,7 +45,7 @@ $listonosz['iloscUczen'] = intval($_POST['iloscSzkolne']);
 $listonosz['iloscStudent'] = intval($_POST['iloscStudent']);
 $listonosz['idRepertuaru'] = intval($_SESSION['idRepertuaru']);
 $listonosz['idUzytkownika'] = intval($_SESSION['idUzytkownika']);
-
+var_dump(json_encode($listonosz));
 $ch->setPostURL($urlBiznes, json_encode($listonosz));
 $fromBiznesString = $ch->exec();
 $fromBiznes = json_decode($fromBiznesString, TRUE);
