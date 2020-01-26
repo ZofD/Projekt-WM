@@ -8,6 +8,14 @@ if (!isset($_SESSION['inicjuj']))
 	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 }
 
+if(!isset($_SESSION['admin'])){
+	header('Location: index.php');
+}else{
+	if($_SESSION['admin'] == 0){
+		header("Location: index.php");
+	}
+}
+
 include_once 'curl.php';
 $ch = new ClientURL();
 
@@ -296,10 +304,15 @@ $(document).ready(function(){
 				<div class="row-2">
 					<ul>
 					
-					
+						<?php
+						if($_SESSION['admin'] == 2){
+						?>
 						<li><a href="Dodawanie_filmu.php" class="active" >Panel Filmów</a></li>
 						<li><a href="Panel_Admina.php" >Panel Admin</a></li>
 						<li><a href="Panel_Repertuaru.php">Panel Repertuaru</a></li>
+						<?php
+						}
+						?>
 						<li><a href="Panel_Pracownika.php">Panel Pracownika</a></li>
 						<li><a href="logout.php">Wyloguj</a></li>
 						

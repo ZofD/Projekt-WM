@@ -24,62 +24,73 @@ $wyslij['id'] = $_GET['id'];
 
 // $ch->setPostURL($url, $wyslij);
 // $rezult = $ch->exec();
-
-$listonosz['data'] = $_SESSION['tytul'];//tytul
-
-$dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
-
-
-foreach($_POST['miejsca'] as $r => $dane) $miejscaZ [] = intval($dane);
-
-$listonosz['godz'] = intval($dataRep->format('H'));
-$listonosz['min'] = intval($dataRep->format('i'));
-$listonosz['miesiac'] = intval($dataRep->format('m'));
-$listonosz['dzien'] = intval($dataRep->format('d'));
-$listonosz['rok'] = intval($dataRep->format('Y'));
-$listonosz['idSali'] = intval($_SESSION['idSali']);
-$listonosz['imie'] = $_POST['imie'];
-$listonosz['nazwisko'] = $_POST['nazwisko'];
-$listonosz['miejsca'] = $miejscaZ;
-$listonosz['iloscUczen'] = intval($_POST['iloscSzkolne']);
-$listonosz['iloscStudent'] = intval($_POST['iloscStudent']);
-$listonosz['idRepertuaru'] = intval($_SESSION['idRepertuaru']);
-$listonosz['idUzytkownika'] = intval($_SESSION['idUzytkownika']);
-var_dump(json_encode($listonosz));
-$ch->setPostURL($urlBiznes, json_encode($listonosz));
-$fromBiznesString = $ch->exec();
-$fromBiznes = json_decode($fromBiznesString, TRUE);
-// var_dump($fromBiznesString);
-// var_dump($fromBiznes);
-$cena = 0.0;
-if($fromBiznes['rezerwacja']){
-	$cena = $fromBiznes['cena'];
-	$index = $fromBiznes['indexTabeliMiejsca'];
-}else{
-	echo 'źle';
-	// header('Location: Rezerwacja.php?id='.$wyslij['id']);
-}
-
 if(isset($_POST['miejsca']) && isset($_POST['imie']) && isset($_POST['nazwisko']) && isset($_POST['iloscSzkolne']) && isset($_POST['iloscStudent'])){
+
+	$listonosz['data'] = $_SESSION['tytul'];//tytul
+
+	$dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
+
+
+	foreach($_POST['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
+
+	$listonosz['godz'] = intval($dataRep->format('H'));
+	$listonosz['min'] = intval($dataRep->format('i'));
+	$listonosz['miesiac'] = intval($dataRep->format('m'));
+	$listonosz['dzien'] = intval($dataRep->format('d'));
+	$listonosz['rok'] = intval($dataRep->format('Y'));
+	$listonosz['idSali'] = intval($_SESSION['idSali']);
+	$listonosz['imie'] = $_POST['imie'];
+	$listonosz['nazwisko'] = $_POST['nazwisko'];
+	$listonosz['miejsca'] = $miejsca;
+	$listonosz['iloscUczen'] = intval($_POST['iloscSzkolne']);
+	$listonosz['iloscStudent'] = intval($_POST['iloscStudent']);
+	$listonosz['idRepertuaru'] = intval($_SESSION['idRepertuaru']);
+	$listonosz['idUzytkownika'] = intval($_SESSION['idUzytkownika']);
+	var_dump(json_encode($listonosz));
+	$ch->setPostURL($urlBiznes, json_encode($listonosz));
+	$fromBiznesString = $ch->exec();
+	$fromBiznes = json_decode($fromBiznesString, TRUE);
+	// var_dump($fromBiznesString);
+	// var_dump($fromBiznes);
+	$cena = 0.0;
+	if($fromBiznes['rezerwacja']){
+		$cena = $fromBiznes['cena'];
+		$index = $fromBiznes['indexTabeliMiejsca'];
+		$_SESSION['cenaRez'] = $cena;
+	}else{
+		echo 'źle';
+		// header('Location: Rezerwacja.php?id='.$wyslij['id']);
+	}
+
 	$imie = $_POST['imie'];
 	$nazwisko = $_POST['nazwisko'];
-	$miejsca = $_POST['miejsca'];
 	$iloscSzkolne = intval($_POST['iloscSzkolne']);
 	$iloscStudenckie = intval($_POST['iloscStudent']);
+
+	$_SESSION['imieRez'] = $imie;
+	$_SESSION['nazwiskoRez'] = $nazwisko;
+	$_SESSION['miejscaRez'] = $miejsca;
+	$_SESSION['iloscSzkolneRez'] = $iloscSzkolne;
+	$_SESSION['iloscStudentRez'] = $iloscStudenckie;
 }
-else
-{
-    echo "Do not Need wheelchair access.";
+else{
+	if(isset($_SESSION['miejscaRez']) && isset($_SESSION['imieRez']) && isset($_SESSION['nazwiskoRez']) && isset($_SESSION['iloscSzkolneRez']) && isset($_SESSION['iloscStudentRez'])){
+		$imie = $_SESSION['imieRez'];
+		$nazwisko = $_SESSION['nazwiskoRez'];
+		$miejsca = $_SESSION['miejscaRez'];
+		$iloscSzkolne = intval($_SESSION['iloscSzkolneRez']);
+		$iloscStudenckie = intval($_SESSION['iloscStudentRez']);
+		$cena = $_SESSION['cenaRez'];
+	}else echo "to nie tak";
 }	 
 
 $data = date("Y-m-d");
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl-PL">
 <head>
 <title>Podsumowanie rezerwacji</title>
-<meta charset="UTF-8" http-equiv="Content-Type" content="text/html />
+<meta charset="UTF-8" http-equiv="Content-Type" content="text/html" />
 <meta name="description" content="Place your description here" />
 <meta name="keywords" content="put, your, keyword, here" />
 <meta name="author" content="Templates.com - website templates provider" />
@@ -129,6 +140,7 @@ $data = date("Y-m-d");
 					<div class="border-right">
 						<div class="border-left">
 						<h3 style="padding-left: 50px"><span>Podsumowanie Rezerwacji</span></h3>
+							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>">
                                <h4 style="padding-left: 50px">Dane Klienta:</h4>
 						      		<p style="padding-left: 50px; font-weight: bold"><?php echo "Pan/Pani ".$imie." ".$nazwisko; ?></p>		
 								<h4 style="padding-left: 50px">Zarezerwowane miejsca: </h4>
@@ -139,11 +151,22 @@ $data = date("Y-m-d");
 									<p style="padding-left: 50px"><?php echo $data; ?></p>
 								<h4 style="padding-left: 50px">Łączna cena: </h4>
 									<p style="padding-left: 50px"><?php echo $cena; ?></p><br><br>
-								<div class="wrapper" style="padding-left: 50px"><a href="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>" ><input type="button" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" /></a></div>	<br><br>
-							</div>
+								<div class="wrapper" style="padding-left: 50px">
+								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
+								</div><br><br>
+							</form>
+							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>">
+								<?php
+									if(intval($_SESSION['admin']) == 1) echo "<input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /> <br>";
+								?>
+							</form>
+							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>">
+								<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" />
+							</form>
 						</div>
 					</div>
 				</div>
+			</div>
 
 <!-- 			<div class="content">
 					<h3>Kontakt </span></h3>

@@ -88,9 +88,16 @@ $liczbaRzedow = 10;
 				<div class="row-1">
 					<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
 					<ul>
-                    <li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
+                        <li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
-						<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
+						<?php
+						if(isset($_SESSION['admin'])){
+							if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){
+						?>
+							<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
+						<?php
+						}}
+						?>
 					</ul>
 				</div>
 				<div class="row-2">
@@ -108,7 +115,7 @@ $liczbaRzedow = 10;
 				
                 <div class="row">	
   <h4  style="margin:auto;padding-top:15px; padding-left:15px">Wybór miejsc filmu <?php echo $json['film']['tytul']; ?></h4>
-    <form action="podsumowanie.php?id=<?php echo $wyslij['id']?>" method="post" class="container">
+    <form action="podsumowanie.php?id=<?php echo $wyslij['idRepertuaru']; ?>" method="POST" class="container">
         <div class="w3ls-reg">
             <!-- input fields -->
             <div class="inputForm">

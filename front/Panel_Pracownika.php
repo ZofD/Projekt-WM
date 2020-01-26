@@ -298,9 +298,15 @@ $(document).ready(function(){
 					
 					
 						
+					<?php
+						if($_SESSION['admin'] == 2){
+						?>
 						<li><a href="Dodawanie_filmu.php" >Panel Filmów</a></li>
-						<li><a href="Panel_Admina.php">Panel Admin</a></li>
+						<li><a href="Panel_Admina.php" >Panel Admin</a></li>
 						<li><a href="Panel_Repertuaru.php">Panel Repertuaru</a></li>
+						<?php
+						}
+						?>
 						<li><a href="Panel_Pracownika.php"class="active">Panel Pracownika</a></li>
 						<li><a href="logout.php">Wyloguj</a></li>
 						
