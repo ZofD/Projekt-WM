@@ -25,7 +25,6 @@ $wyslij['id'] = $_GET['id'];
 // $ch->setPostURL($url, $wyslij);
 // $rezult = $ch->exec();
 if(isset($_POST['miejsca']) && isset($_POST['imie']) && isset($_POST['nazwisko']) && isset($_POST['iloscSzkolne']) && isset($_POST['iloscStudent'])){
-
 	$listonosz['data'] = $_SESSION['tytul'];//tytul
 
 	$dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
@@ -46,7 +45,7 @@ if(isset($_POST['miejsca']) && isset($_POST['imie']) && isset($_POST['nazwisko']
 	$listonosz['iloscStudent'] = intval($_POST['iloscStudent']);
 	$listonosz['idRepertuaru'] = intval($_SESSION['idRepertuaru']);
 	$listonosz['idUzytkownika'] = intval($_SESSION['idUzytkownika']);
-	var_dump(json_encode($listonosz));
+
 	$ch->setPostURL($urlBiznes, json_encode($listonosz));
 	$fromBiznesString = $ch->exec();
 	$fromBiznes = json_decode($fromBiznesString, TRUE);
@@ -140,7 +139,10 @@ $data = date("Y-m-d");
 					<div class="border-right">
 						<div class="border-left">
 						<h3 style="padding-left: 50px"><span>Podsumowanie Rezerwacji</span></h3>
-							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>">
+							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>?idRezerwacji=<?php 
+								if(isset($_GET['idRezerwacji'])) echo $_GET['idRezerwacji']; 
+								else echo -1; 
+							?>" method="POST">
                                <h4 style="padding-left: 50px">Dane Klienta:</h4>
 						      		<p style="padding-left: 50px; font-weight: bold"><?php echo "Pan/Pani ".$imie." ".$nazwisko; ?></p>		
 								<h4 style="padding-left: 50px">Zarezerwowane miejsca: </h4>
@@ -155,12 +157,12 @@ $data = date("Y-m-d");
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
 								</div><br><br>
 							</form>
-							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>">
+							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>" method="POST">
 								<?php
 									if(intval($_SESSION['admin']) == 1) echo "<input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /> <br>";
 								?>
 							</form>
-							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>">
+							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>" method="POST">
 								<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" />
 							</form>
 						</div>

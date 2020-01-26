@@ -13,8 +13,8 @@ $ch = new ClientURL();
 // $ch->setPostURL($url, $wyslij);
 // $rezult = $ch->exec();
 
-$wyslij['id'] = $_GET['idRepertuaru'];
-$index = $_GET['index'];
+$wyslij['id'] = intval($_GET['id']);
+$index = intval($_GET['index']);
 
 $dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
 
@@ -34,6 +34,8 @@ $listonosz['idRepertuaru'] = $wyslij['id'];
 $listonosz['idUzytkownika'] = $_SESSION['id'];
 $listonosz['indexMiejscaTab'] = $index;
 $listonosz['admin'] = $_SESSION['admin'];
+$listonosz['idRezerwacji'] = intval($_GET['idRezerwacji']);
+$listonosz['cena'] = $_SESSION['cena'];
 
 if(isset($_POST['zatwierdz'])){ 
     $listonosz['akcja'] = 0;
@@ -52,7 +54,7 @@ if(isset($_POST['drukuj'])){
     $ch->setPostURL($urlBiznes2, $listonosz);
     $fromBiznes = $ch->exec();
     $bilet = json_decode($fromBiznes, TRUE);
-    if($fromBiznes['odp']) $bilet['bilet']->Output();
+    if($bilet['odp']) var_dump($bilet['bilet']);
     header('Location: podsumowanie.php?id='.$wyslij['id'].'?index='.$index);
 }
 
@@ -67,6 +69,4 @@ if(isset($_POST['anuluj'])){
         header('Location: podsumowanie.php?id='.$wyslij['id'].'?index='.$index);
     }
 }
-
-
 ?>

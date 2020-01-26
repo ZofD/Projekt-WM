@@ -43,7 +43,7 @@
     $ch->setPostURL($urlBaza, json_encode($wyslij));
     $result = $ch->exec();
 
-    echo json_encode(array($doDruku));
+    echo json_encode(array('odp'=> true,'bilet' => $doDruku));
     // $wyslij[] = $doDruku;
 
     //wyslanie ceny do frontu
