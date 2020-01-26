@@ -16,6 +16,7 @@ $login = $_POST['login'];
 $imie = $_POST['imie'];
 $nazwisko = $_POST['nazwisko'];
 $mail = $_POST['mail'];
+$admin = $_POST['admin'];
 $passwordOne = $_POST['passwordOne'];
 $passwordTwo = $_POST['passwordTwo'];
 
@@ -30,7 +31,7 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 
 $url = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/uzytkownik/rejestracja.php';
 if($passwordOne==$passwordTwo){
-$arrayData = array('login' => $login, 'password' => $passwordOne, 'email' => $mail, 'imie' => $imie, 'nazwisko' => $nazwisko);
+$arrayData = array('login' => $login, 'password' => $passwordOne, 'admin' => $admin, 'email' => $mail, 'imie' => $imie, 'nazwisko' => $nazwisko);
 $dataToAppi = json_encode($arrayData);
 
 $ch->setPostURL($url, $dataToAppi);

@@ -49,7 +49,14 @@
 						
 					<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
-						<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
+						<?php
+						if(isset($_SESSION['admin'])){
+							if($_SESSION['admin'] == 1 || $_SESSION['admin'] == 2){
+						?>
+							<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
+						<?php
+						}}
+						?>
 						
 					</ul>
 				</div>
@@ -89,6 +96,7 @@
   <input name="mail" type="login" class="login-username" autofocus="true" required="true" placeholder="Mail" />
   <input name="passwordOne" type="password" class="login-password" required="true" placeholder="Hasło" />
   <input name="passwordTwo" type="password" class="login-password" required="true" placeholder="Powtórz hasło" />
+  <input name="admin"   type="hidden" value="0" class="login-password" required="true" placeholder="Typ konta user" />
   <input type="submit" name="zarejestruj" value="zarejestruj" class="login-submit" />
 </form>
 
