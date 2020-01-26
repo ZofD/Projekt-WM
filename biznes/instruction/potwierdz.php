@@ -32,28 +32,36 @@
     $idUzytkownika = $listonosz['idUzytkownika'];
     $id = $listonosz['indexMiejscaTab'];
     $admin = $listonosz['admin'];
-    $dzienTygodnia = mktime($godzina, $minuta, 0, $miesiac, $dzien, $rok);
+    $akcja = $listonosz['akcja'];
 
     $Repertuar = new Repertuar($data, $godzina, $minuta, $miesiac, $dzien, $rok, $sala);
     $Rezerwacja = new Rezerwacje($Repertuar, $imie, $nazwisko, $miejsca, $iloscUczen, $iloscStudent);
-    $Rezerwacja->potwierdz($id);
 
-    $wyslij['idUzytkownika'] = $idUzytkownika;
-    $wyslij['idRepertuaru'] = $idRepertuar;
-    $wyslij['iloscUczen'] = $iloscUczen;
-    $wyslij['iloscStudent'] = $iloscStudent;
-    if($admin == 0) $wyslij['bilet'] = 0;
-    else $wyslij['bilet'] = 1;
-    $wyslij['miejsca'] = $miejsca;
-
-    $ch->setPostURL($urlBaza, json_encode($wyslij));
-    $result = $ch->exec();
-
-    $odpAPI = json_decode($result, TRUE);
-
-    if($odpAPI['Rezerwacja']){
-        echo json_encode(array('odp' => TRUE, 'idRezerwacji' => $odpAPI['idRezerwacji']));
+    if($akcja == 2){
+        $Rezerwacja->anuluj($id);
+        
+        echo json_encode(array('odp' => TRUE));
     }else{
-        echo json_encode(array('odp' => FALSE));
+        $Rezerwacja->potwierdz($id);
+
+        $wyslij['idUzytkownika'] = $idUzytkownika;
+        $wyslij['idRepertuaru'] = $idRepertuar;
+        $wyslij['iloscUczen'] = $iloscUczen;
+        $wyslij['iloscStudent'] = $iloscStudent;
+        if($admin == 0) $wyslij['bilet'] = 0;
+        else $wyslij['bilet'] = 1;
+        $wyslij['miejsca'] = $miejsca;
+
+        $ch->setPostURL($urlBaza, json_encode($wyslij));
+        $result = $ch->exec();
+
+        $odpAPI = json_decode($result, TRUE);
+
+        if($odpAPI['Rezerwacja']){
+            echo json_encode(array('odp' => TRUE, 'idRezerwacji' => $odpAPI['idRezerwacji']));
+        }else{
+            echo json_encode(array('odp' => FALSE));
+        }
     }
+
 ?>
