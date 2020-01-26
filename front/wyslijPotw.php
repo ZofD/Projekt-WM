@@ -1,4 +1,7 @@
 <?php
+
+include_once 'curl.php';
+
 $url = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/repertuar/read_single.php';
 $urlBiznes = 'http://localhost:8080/WM/projekt/Projekt-WM/biznes/instruction/rezerwuj.php';
 

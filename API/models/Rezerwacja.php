@@ -12,6 +12,8 @@
         public $iloscStudent;
         public $id_repertuaruFKRez;
         public $cena;
+        public $imie;
+        public $nazwisko;
 
         public function __construct($db){
             $this->conn = $db;
@@ -49,6 +51,16 @@
             $this->id_repertuaruFKRez = $row['id_repertuaru'];
         }
         
+        public function getForPracownik(){
+            $query = 'SELECT id_rezerwacji, bilet, user_id, ilosc_uczen_senior, ilosc_student, id_repertuaru, cena, imie, nazwisko FROM ' . $this->table . ' WHERE bilet = ' . 0;
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->execute();
+
+            return $stmt;
+        }
+
         public function deleteRezerwacjaById(){
             $query = 'DELETE FROM ' . $this->table . ' WHERE id_rezerwacji = ' . $this->id_rezerwacji;
             

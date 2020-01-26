@@ -8,6 +8,14 @@ if (!isset($_SESSION['inicjuj']))
 	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 }
 
+include_once 'curl.php';
+$ch = new ClientURL();
+
+$url = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/read_pracownik.php';
+
+$ch->setGetURL($url);
+$rezult = $ch->exec();
+$json = json_decode($rezult, TRUE);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -332,76 +340,26 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-                        <td>%DANE%</td>
-                        <td>%Miejsca%</td>
-						
-                        <td>
-                            <a href="index.php" class="btn btn-success" data-toggle="modal"><span>Potwierdz</span></a>
-                        </td>
-                    </tr>
-                    <tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-						</td>
-                        <td>%DANE%</td>
-                        <td>%Miejsca%</td>
-						
-                        <td>
-                            <a href="index.php" class="btn btn-success" data-toggle="modal"><span>Potwierdz</span></a>
-                        </td>
-                    </tr>
+				<?php 
+					if(is_array($json)){ 
+						$tab = $json['data'];
+						foreach($tab as $r => $dane){ ?>
 					<tr>
-						<td>
+						<form action="repertuar_del.php" method="POST">
+							<td>
 							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-						</td>
-                       <td>%DANE%</td>
-                        <td>%Miejsca%</td>
-						
-                        <td>
-                            <a href="index.php" class="btn btn-success" data-toggle="modal"><span>Potwierdz</span></a>
-                        </td>
-                    </tr>
-                    <tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-							</span>
-						</td>
-                        <td>%DANE%</td>
-                        <td>%Miejsca%</td>
-						
-                        <td>
-                            <a href="index.php" class="btn btn-success" data-toggle="modal"><span>Potwierdz</span></a>
-                        </td>
-                    </tr>					
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-                        <td>%DANE%</td>
-                        <td>%Miejsca%</td>
-						
-                        <td>
-                            <a href="index.php" class="btn btn-success" data-toggle="modal"><span>Potwierdz</span></a>
-                        </td>
-                    </tr> 
+									<input type="checkbox" >
+									<label for="selectAll"></label>
+								</span>
+							</td>
+							<td><?php echo($dane['id']." ".$dane['imie']." ".$dane['nazwisko']); ?></td>
+							<td>
+							<td>
+                            	<a href="index.php" class="btn btn-success" data-toggle="modal"><span>Potwierdz</span></a>
+                        	</td>
+						</form>
+					</tr>
+				<?php  }} ?>
                 </tbody>
             </table>
 		
