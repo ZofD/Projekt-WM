@@ -330,7 +330,7 @@ $(document).ready(function(){
 						<h2>Zarzadzanie <b>Filmami</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="index.php" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Dodaj nowy film</span></a>									
+					<a href="film_add.php" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Dodaj film</span></a>								
 					</div>
                 </div>
             </div>
