@@ -326,13 +326,14 @@ $(document).ready(function(){
                     <tr>
 						<th>
 							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
+								<input type="checkbox" id="selectAll" disabled>
 								<label for="selectAll"></label>
 							</span>
 						</th>
                         <th>Tytuł</th>
-                        <th>rezyser</th>
-						<th></th>
+                        <th>Reżyser</th>
+						<th>Usuń film</th>
+						
                        
                     </tr>
                 </thead>
@@ -345,7 +346,7 @@ $(document).ready(function(){
 						<form action="repertuar_del.php" method="POST">
 							<td>
 							<span class="custom-checkbox">
-									<input type="checkbox" >
+									<input type="checkbox" disabled>
 									<label for="selectAll"></label>
 								</span>
 							</td>
