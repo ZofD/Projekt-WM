@@ -25,6 +25,22 @@ class Film{
         return $stmt;
     }
 
+    public function filmExist(){
+        $query = 'SELECT id_filmu, tytul, rezyser, opis FROM ' . $this->table . ' WHERE id_filmu = ?';
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->BindParam(1, $this->id_filmu);
+
+        $stmt->execute();
+
+        if($stmt->rowCount() == 1){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
     public function getFilmById(){
         $query = 'SELECT id_filmu, tytul, rezyser, opis FROM ' . $this->table . ' WHERE id_filmu = ?';
 
