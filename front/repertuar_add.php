@@ -79,7 +79,7 @@
   <h4 style="padding-bottom:0px">Dodaj repertuar</h4>
   <input type="film" name="film" class="login-username" autofocus="true" required="true" placeholder="ID filmu" />
   <input type="id_sali" name="id_sali" class="login-password" required="true" placeholder="ID sali" />
-  <input type="text" name="date" class="login-password" value="2020-01-08 00:00:00" required="true" placeholder="data" />
+  <input type="text" name="date" class="login-password" value="2020-01-29 08:00:00" required="true" placeholder="data" />
   <input type="submit" name="LoginButton" value="Dodaj repertuar" class="login-submit" />
 </form>
 
