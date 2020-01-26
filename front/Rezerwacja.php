@@ -136,9 +136,11 @@ $liczbaRzedow = 10;
             <!-- //input fields -->
             <br>
             <div class='seatStructure'>
+                <div class="notification"></div>
                 <ul style="text-align: center; margin-bottom:0px; color:black;"><li>Wybrane siedzenia</li><li>Zarezerwowane siedzenia</li><li>Puste siedzenia</li></ul>
                 <table style="margin:auto">
                     <?php
+                        // var_dump($jsonMiejsca);
                         for($j = 0; $j < $liczbaRzedow; $j++){
                             echo "<tr>";
                                 for($i = 0; $i < $liczbaMiejscRzedu; $i++){
@@ -157,9 +159,9 @@ $liczbaRzedow = 10;
                                         // echo "<br/>";
                                     }
                                     if($zajete){
-                                        echo "<td class='displayerBoxes'><input type='checkbox' name='miejsca[]' class='seats' value='".($j*10+$i)."' disabled='disabled'></td>";
+                                        echo "<td class=''><input type='checkbox' name='miejsca[]' class='seats rez' value='".($j*10+$i)."'></td>";
                                     }else{
-                                        echo "<td class='displayerBoxes'><input type='checkbox' name='miejsca[]' class='seats' value='".($j*10+$i)."'></td>";
+                                        echo "<td class=''><input type='checkbox' name='miejsca[]' class='seats not' value='".($j*10+$i)."'></td>";
                                     }
                                 }
                             echo "</tr>";
@@ -171,11 +173,9 @@ $liczbaRzedow = 10;
                 <h3 style="margin:auto;padding-top:15px; padding-left:15px; color:black; text-align:center">EKRAN KINA</h2>
                 </div><br>
                 <div style="margin-left: 41.5%">
-               <input name="Powrót" value="Powrót" class="login-submit2" type="button"/>
-         
-                <!-- prosze mi wlaczyc <input type="submit"> -->
-                <input name="Podsumowanie" value="Podsumowanie" class="login-submit2" type="submit"/> </div> 
-         
+                    <a href="index.php" style="text-decoration: none" value="Powrót" class="login-submit2">Powrót</a>
+                    <input name="Podsumowanie" value="Podsumowanie" class="login-submit2" type="submit"/> 
+                </div> 
 
     </form>
 
@@ -184,41 +184,45 @@ $liczbaRzedow = 10;
     <script>
 
         function onLoaderFunc() {
-            $(".seatStructure *").prop("disabled", true);
-            $(".displayerBoxes *").prop("readonly", true);
+            // $(".seatStructure *").prop("disabled", true);
+            $(".not").prop("disabled", true);
+            $(".rez").prop("disabled", true);
+            $("input.login-submit2").prop("disabled", true);
         }
 
         function takeData() {
             if ($("#Username").val().length == 0 || $("#Numseats").val().length == 0 || parseInt($("#szkolny").val()) + parseInt($("#student").val()) > parseInt($("#Numseats").val())) {
                 alert("podaj wszystkie dane lub zmień ilość ulg (nie mogą przekraczać liczby miejsc)");
             } else {
-                $(".inputForm *").prop("readonly", true);
-                $(".seatStructure *").prop("disabled", false);
+                $(".login-submit").prop("disabled", true);
+                $('.login-username2').prop("readonly", true);
+                $(".not").prop("disabled", false);
+                $('.login-submit').prop('disabled', true);
                 document.getElementById("notification").innerHTML =
                     "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>Please Select your Seats NOW!</b>";
             }
         }
 
 
-        function updateTextArea() {
+        // function updateTextArea() {
 
-            if ($("input:checked").length == ($("#Numseats").val())) {
-                $(".seatStructure *").prop("disabled", true);
+        //     if ($("input:checked").length == ($("#Numseats").val())) {
+        //         $(".seatStructure *").prop("disabled", true);
 
-                var allNameVals = [];
-                var allNumberVals = [];
-                var allSeatsVals = [];
+        //         var allNameVals = [];
+        //         var allNumberVals = [];
+        //         var allSeatsVals = [];
 
-                //Storing in Array
-                allNameVals.push($("#Username").val());
-                allNumberVals.push($("#Numseats").val());
-                $('#seatsBlock :checked').each(function () {
-                    allSeatsVals.push($(this).val());
-                });
-            } else {
-                alert("Please select " + ($("#Numseats").val()) + " seats")
-            }
-        }
+        //         //Storing in Array
+        //         allNameVals.push($("#Username").val());
+        //         allNumberVals.push($("#Numseats").val());
+        //         $('#seatsBlock :checked').each(function () {
+        //             allSeatsVals.push($(this).val());
+        //         });
+        //     } else {
+        //         alert("Please select " + ($("#Numseats").val()) + " seats")
+        //     }
+        // }
 
 
         function myFunction() {
@@ -245,10 +249,12 @@ $liczbaRzedow = 10;
 
         $(":checkbox").click(function () {
             if ($("input:checked").length == ($("#Numseats").val())) {
-                $(":checkbox").prop('disabled', true);
+                $('.not').prop('disabled', true);
                 $(':checked').prop('disabled', false);
+                $('.login-submit2').prop('disabled', false);
             } else {
-                $(":checkbox").prop('disabled', false);
+                $('.not').prop('disabled', false);
+                $('.login-submit2').prop('disabled', true);
             }
         });
     </script>

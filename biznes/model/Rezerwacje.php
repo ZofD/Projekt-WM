@@ -41,8 +41,8 @@ class Rezerwacje{
         return $this->miejsca;
     }
 
-    public function rezerwuj($idRepertuar, $miejsca){   //funkcja jesli ma dostep do pliku i podane miejsca nie są zajete 
-        $rezerwacje = json_decode(file_get_contents("miejsca.json"), TRUE);   //zapisuje dane do pliku z stanem 0 czyli wstepnie zajete
+    public function rezerwuj($idRepertuar, $miejsca){                           //funkcja jesli ma dostep do pliku i podane miejsca nie są zajete 
+        $rezerwacje = json_decode(file_get_contents("miejsca.json"), TRUE);     //zapisuje dane do pliku z stanem 0 czyli wstepnie zajete
         $miejsca[] = 0;
         $k = 1;
         $id = 0;
@@ -90,8 +90,8 @@ class Rezerwacje{
         return TRUE;
     }
 
-    function anuluj($id){                                //funkcja nadaje idRepertuaru na -1 co skutkuje 
-        $rezerwacje = json_decode(file_get_contents("miejsca.json"), TRUE);   //nie braniem tego rekordu pod uwage w przyszlosci
+    function anuluj($id){                                                       //funkcja nadaje idRepertuaru na -1 co skutkuje 
+        $rezerwacje = json_decode(file_get_contents("miejsca.json"), TRUE);     //nie braniem tego rekordu pod uwage w przyszlosci
         $rezerwacje[$id][0] = -1;
         $rezerwacje = json_encode($rezerwacje);
         file_put_contents("miejsca.json", $rezerwacje);
