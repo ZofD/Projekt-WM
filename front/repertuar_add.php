@@ -7,17 +7,11 @@
 	// 	$_SESSION['inicjuj'] = true;
 	// 	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 	// }
-	
-	
-	// if($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])
-	// {
-	// 	die('Proba przejecia sesji udaremniona!');	
-	// }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
 <head>
-<title>Stwórz konto pracownika</title>
+<title>Zaloguj</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="Place your description here" />
 <meta name="keywords" content="put, your, keyword, here" />
@@ -36,7 +30,7 @@
 	<link href="ie6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 </head>
-<body id="page2">
+<body id="page3">
 
 <div class="tail-top">
 	<div class="tail-bottom">
@@ -45,7 +39,7 @@
 			<div id="header">
 				<div class="row-1">
 				<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-					<ul>
+				<ul>
 					<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
@@ -56,11 +50,10 @@
 					<ul>
 						
 					<li><a href="Dodawanie_filmu.php" >Panel Filmów</a></li>
-						<li><a href="Panel_Admina.php"class="active">Panel Admin</a></li>
-						<li><a href="Panel_Repertuaru.php">Panel Repertuaru</a></li>
+						<li><a href="Panel_Admina.php">Panel Admin</a></li>
+						<li><a href="Panel_Repertuaru.php" class="active">Panel Repertuaru</a></li>
 						<li><a href="Panel_Pracownika.php">Panel Pracownika</a></li>
 						<li><a href="logout.php">Wyloguj</a></li>
-						
 					</ul>
 				</div>
 			</div>
@@ -70,23 +63,24 @@
 <div id="content">
 				<div id="slogan">
 					<div class="image png"></div>
-					<div class="inside" style="padding-top:5px">
+					<div class="inside">
 			
 					
-
+					<p class="login-text">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-lock fa-stack-1x"></i>
+    </span>
+  </p>
 						
 					
 					
-					<form action="regi.php" method="POST">
-					<h4 style="padding-bottom:0px">Stwórz konto pracownika</h4>
-  <input name="login" type="login" class="login-username" autofocus="true" required="true" placeholder="Login pracownika" />
-  <input name="imie" type="login" class="login-username" autofocus="true" required="true" placeholder="Imię" />
-  <input name="nazwisko" type="login" class="login-username" autofocus="true" required="true" placeholder="Nazwisko" />
-  <input name="mail" type="login" class="login-username" autofocus="true" required="true" placeholder="Mail" />
-  <input name="passwordOne" type="password" class="login-password" required="true" placeholder="Hasło" />
-  <input name="passwordTwo" type="password" class="login-password" required="true" placeholder="Powtórz hasło" />
-  <input name="admin"   type="hidden" value="1" class="login-password" required="true" placeholder="Typ konta pracownik" />
-  <input type="submit" name="zarejestruj" value="zarejestruj" class="login-submit" />
+  <form action="repertuar_add_post.php" method="POST">
+  <h4 style="padding-bottom:0px">Dodaj repertuar</h4>
+  <input type="film" name="film" class="login-username" autofocus="true" required="true" placeholder="ID filmu" />
+  <input type="id_sali" name="id_sali" class="login-password" required="true" placeholder="ID sali" />
+  <input type="text" name="password" class="login-password" value="2020-01-08 00:00:00" required="true" placeholder="data" />
+  <input type="submit" name="LoginButton" value="Dodaj repertuar" class="login-submit" />
 </form>
 
 </div></div></div><div>
