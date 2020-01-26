@@ -11,7 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
 <head>
-<title>Dodaj repertuar</title>
+<title>Dodaj film</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="Place your description here" />
 <meta name="keywords" content="put, your, keyword, here" />
@@ -75,11 +75,11 @@
 						
 					
 					
-  <form action="repertuar_add_post.php" method="POST">
+  <form action="film_add_post.php" method="POST">
   <h4 style="padding-bottom:0px">Dodaj film</h4>
-  <input type="text" name="film" class="login-username" autofocus="true" required="true" placeholder="Tytuł filmu" />
-  <input type="text" name="id_sali" class="login-password" required="true" placeholder="Reżyser filmu" />
-  <input type="text" name="date" class="login-password"  required="true" placeholder="Opis filmu" />
+  <input type="text" name="tytul" class="login-username" autofocus="true" required="true" placeholder="Tytuł filmu" />
+  <input type="text" name="rezyser" class="login-password" required="true" placeholder="Reżyser filmu" />
+  <input type="text" name="opis" class="login-password"  required="true" placeholder="Opis filmu" />
   <input type="submit" name="LoginButton" value="Dodaj film" class="login-submit" />
 </form>
 
