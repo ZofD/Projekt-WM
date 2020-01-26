@@ -7,6 +7,7 @@
 
     include_once './../config/Database.php';
     include_once './../models/Repertuar.php';
+    include_once './../models/Film.php';
 
     //inicjalizacja polaczenia z baza danych
     $database = new Database();
@@ -22,9 +23,15 @@
         $repertuar->id_saliFKRep = $data['id_sali'];
         $repertuar->data = $data['date'];
 
-        //utworz repertuar
-        if($repertuar->create()){
-            echo json_encode(array('message' => TRUE));
+        $film = new Film($db);
+        $film->id_filmu = $data['film'];
+        if($film->filmExist()){
+            //utworz repertuar
+            if($repertuar->create()){
+                echo json_encode(array('message' => TRUE));
+            }else{
+                echo json_encode(array('message' => FALSE));
+            }
         }else{
             echo json_encode(array('message' => FALSE));
         }
