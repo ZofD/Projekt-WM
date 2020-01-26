@@ -78,6 +78,7 @@ $json = json_decode($rezult, TRUE);
 						<?php }else{?>
 						<li><a href="logout.php">Wyloguj</a></li>
 						<?php }?>
+						<li><a href="cennik.php" >Cennik</a></li>
 						<li><a href="contact-us.php">Kontakt</a></li>
 						
 					</ul>
