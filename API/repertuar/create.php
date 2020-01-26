@@ -20,13 +20,13 @@
     
         $repertuar->id_filmu = $data['film'];
         $repertuar->id_saliFKRep = $data['id_sali'];
-        $repertuar->data = $data['data']['date'];
+        $repertuar->data = $data['date'];
 
         //utworz repertuar
         if($repertuar->create()){
-            echo json_encode(array('message' => 'Repertuar Created'));
+            echo json_encode(array('message' => TRUE));
         }else{
-            echo json_encode(array('message' => 'Repertuar Not Created'));
+            echo json_encode(array('message' => FALSE));
         }
         }catch(Exception $e){
             echo $e->getMessage();

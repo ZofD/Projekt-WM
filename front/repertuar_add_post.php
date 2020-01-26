@@ -19,11 +19,12 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 $url = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/repertuar/create.php';
 
 $arrayData = array('film' => $film, 'id_sali' => $id_sali, 'date' => $date);
+// var_dump($arrayData);
 $dataToAppi = json_encode($arrayData);
-
+// var_dump($dataToAppi);
 $ch->setPostURL($url, $dataToAppi);
 $wynik = $ch->exec();
-
+// var_dump($wynik);
 $json = json_decode($wynik, TRUE);
 
 if($json['message']){

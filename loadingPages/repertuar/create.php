@@ -8,9 +8,9 @@ $url = 'http://localhost:8080/WM/projekt/Projekt-WM/API/repertuar/create.php';
 
 $dataFormUser = json_decode(file_get_contents('php://input'), true);
     // var_dump($dataFormUser);
-$date = array('data' => new DateTime());                    //tymczasowe
-$dataFormUserTMP = array_merge($dataFormUser, $date);       //tymczasowe
-$dataToAppi = json_encode($dataFormUserTMP, true);
+// $date = array('data' => new DateTime());                    //tymczasowe
+// $dataFormUserTMP = array_merge($dataFormUser, $date);       //tymczasowe
+$dataToAppi = json_encode($dataFormUser);
     // var_dump($dataToAppi);
 $ch->setPostURL($url, $dataToAppi);
 $result = $ch->exec();
