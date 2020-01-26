@@ -67,6 +67,7 @@ if($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])
 						<?php }else{?>
 						<li><a href="logout.php">Wyloguj</a></li>
 						<?php }?>
+						<li><a href="cennik.php" >Cennik</a></li>
 						<li><a href="contact-us.php" class="active">Kontakt</a></li>
 						
 					</ul>
