@@ -295,7 +295,7 @@ $(document).ready(function(){
 			<div id="header">
 				<div class="row-1">
 					<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-					<ul>
+					<ul><li>Witaj <?php echo($_SESSION['login']); ?></li>
 						<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
@@ -330,7 +330,7 @@ $(document).ready(function(){
 						<h2>Zarzadzanie <b>Filmami</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="index.php" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Dodaj nowy film</span></a>									
+					<a href="film_add.php" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Dodaj film</span></a>								
 					</div>
                 </div>
             </div>
@@ -356,7 +356,7 @@ $(document).ready(function(){
 						$tab = $json['data'];
 						foreach($tab as $r => $dane){ ?>
 					<tr>
-						<form action="repertuar_del.php" method="POST">
+						<form action="film_del.php" method="POST">
 							<td>
 							<span class="custom-checkbox">
 									<input type="checkbox" disabled>
@@ -366,7 +366,7 @@ $(document).ready(function(){
 							<td><?php echo($dane['tytul']); ?></td>
 							<td><?php echo($dane['rezyser']); ?></td>
 							<td>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<input type="submit" name="id_filmu" value="<?php echo($dane['id_filmu']);?>" class="login-submit"></input></form>
 							</td>
 						</form>
 					</tr>

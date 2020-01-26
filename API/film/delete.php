@@ -6,26 +6,25 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
 include_once './../config/Database.php';
-include_once './../models/Uzytkownik.php';
+include_once './../models/Film.php';
 
 //inicjalizacja polaczenia z baza danych
 $database = new Database();
 $db = $database->connect();
 
-$user = new Uzytkownik($db);
+$film = new Film($db);
 
 try{
     $data = json_decode(file_get_contents('php://input'), TRUE);
 
-    // $user->id = $data->id;
-    $user->id_uzytkownika = $data['id_uzytkownika'];
+    $film->id_filmu = $data['id_filmu'];
 
     //utworz uzytkownika
-    if($user->deleteUserById()){
+    if($film->deleteFilmById()){
         echo json_encode(array('odp' => TRUE));
     }else{
         echo json_encode(array('odp' => FALSE));
     }
 }catch(Exception $e){
-    echo json_encode(array('message' => $e->getMessage()));
+    echo json_encode(array('odp' => $e->getMessage()));
 }

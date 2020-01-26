@@ -75,8 +75,8 @@ class Rezerwacje{
         $ulgaStudencka = $cenyBiletow->getStudenckie();
         $dni = $cenyBiletow->getCeny();
         $cena += $dni[$dzien] * (count($this->miejsca) - $this->iloscUczen - $this->iloscStudent);
-        $cena += $dni[$dzien] / $ulgaSzkolna * $this->iloscUczen;
-        $cena += $dni[$dzien] / $ulgaStudencka * $this->iloscStudent;
+        $cena += $dni[$dzien] * $ulgaSzkolna * $this->iloscUczen;
+        $cena += $dni[$dzien] * $ulgaStudencka * $this->iloscStudent;
         return round($cena,2);
     }
 

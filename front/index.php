@@ -54,7 +54,7 @@ $json = json_decode($rezult, TRUE);
 			<div id="header">
 				<div class="row-1">
 					<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-					<ul>
+					<ul><li>Witaj <?php echo($_SESSION['login']); ?></li>
 					<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<!-- dodać tylko dla sesji pracownika i admina -->
@@ -71,12 +71,14 @@ $json = json_decode($rezult, TRUE);
 				<div class="row-2">
 					<ul>
 						<li><a href="index.php" class="active">Kino</a></li>
-						<li><a href="register.php">Zarejestruj</a></li>
+						
 						<?php if(!$_SESSION['zalogowany']){?>
+						<li><a href="register.php">Zarejestruj</a></li>
 						<li><a href="logowanie.php">Zaloguj</a></li>
 						<?php }else{?>
 						<li><a href="logout.php">Wyloguj</a></li>
 						<?php }?>
+						<li><a href="cennik.php" >Cennik</a></li>
 						<li><a href="contact-us.php">Kontakt</a></li>
 						
 					</ul>
@@ -105,7 +107,7 @@ $json = json_decode($rezult, TRUE);
 											<h4>
 												<?php echo $dane['film']['tytul'];?>
 											</h4>
-											<img src='images/1page-img<?php echo($dane['film']['id_filmu']+1);?>.jpg' alt='nie dla psa kielbasa' />
+											<img src='images/1page-img<?php echo($dane['film']['id_filmu']+1);?>.jpg' alt=' ' />
 											<p>
 											<?php echo $dane['film']['opis'];?>
 											</p>

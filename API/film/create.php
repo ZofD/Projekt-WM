@@ -6,7 +6,6 @@
     header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
     include_once './../config/Database.php';
-    include_once './../models/Repertuar.php';
     include_once './../models/Film.php';
 
     //inicjalizacja polaczenia z baza danych
@@ -14,27 +13,21 @@
     $db = $database->connect();
 
     //inicjalizacja obiektu Repertuar
-    $repertuar = new Repertuar($db);
+    $film = new Film($db);
 
     try{
         $data = json_decode(file_get_contents('php://input'), true);
     
-        $repertuar->id_filmu = $data['film'];
-        $repertuar->id_saliFKRep = $data['id_sali'];
-        $repertuar->data = $data['date'];
+        $film->tytul = $data['tytul'];
+        $film->rezyser = $data['rezyser'];
+        $film->opis = $data['opis'];
 
-        $film = new Film($db);
-        $film->id_filmu = $data['film'];
-        if($film->filmExist()){
-            //utworz repertuar
-            if($repertuar->create()){
-                echo json_encode(array('message' => TRUE));
-            }else{
-                echo json_encode(array('message' => FALSE));
-            }
+        //utworz repertuar
+        if($film->create()){
+            echo json_encode(array('message' => TRUE));
         }else{
             echo json_encode(array('message' => FALSE));
         }
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }
