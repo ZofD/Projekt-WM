@@ -61,8 +61,16 @@ class Film{
 
     public function deleteFilmById(){
         'DELETE FROM ' . $this->table . ' WHERE id = ?';
-        
-        $stmt = $this->conn->prepare($query);
+
+        try{
+            if($this->conn->query($query) == TRUE){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }catch(Exception $e){
+            return FALSE;
+        }
     }
 
     public function create(){
