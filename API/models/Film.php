@@ -61,14 +61,21 @@ class Film{
 
     public function deleteFilmById(){
         'DELETE FROM ' . $this->table . ' WHERE id = ?';
-        
-        $stmt = $this->conn->prepare($query);
+
+        try{
+            if($this->conn->query($query) == TRUE){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }catch(Exception $e){
+            return FALSE;
+        }
     }
 
     public function create(){
         $query = 'INSERT INTO ' . $this->table .'
         SET 
-            id_filmu = :id_filmu,
             tytul = :tytul,
             rezyser = :rezyser,
             opis = :opis;
@@ -77,12 +84,10 @@ class Film{
         $stmt = $this->conn->prepare($query);
 
         //czyszczenie danych
-        $this->id_filmu = htmlspecialchars(strip_tags($this->id_filmu));
         $this->tytul = htmlspecialchars(strip_tags($this->tytul));
         $this->rezyser = htmlspecialchars(strip_tags($this->rezyser));
         $this->opis = htmlspecialchars(strip_tags($this->opis));
 
-        $stmt->bindParam(':id_filmu', $this->id_filmu);
         $stmt->bindParam(':tytul', $this->tytul);
         $stmt->bindParam(':rezyser', $this->rezyser);
         $stmt->bindParam(':opis', $this->opis);
