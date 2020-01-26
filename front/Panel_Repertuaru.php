@@ -332,14 +332,14 @@ $(document).ready(function(){
                     <tr>
 						<th>
 							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
+								<input type="checkbox" id="selectAll" disabled>
 								<label for="selectAll"></label>
 							</span>
 						</th>
                         <th>Id filmu</th>
                         <th>Nr Sali</th>
 						<th>Data</th>
-                        
+						<th>Usuń po ID repertuaru</th>
                         
                     </tr>
                 </thead>
@@ -350,15 +350,15 @@ $(document).ready(function(){
 							foreach($json as $r => $dane){ ?>
 							<form action="repertuar_del.php" method="POST">
 							<th> <span class="custom-checkbox">
-								<input type="checkbox" >
+								<input type="checkbox" disabled>
 								<label for="selectAll"></label>
 							</span></th><th><?php echo($dane['film']['id_filmu']); ?></th>
 							 <th><?php echo($dane['id_sali']); ?></th>
 							 <th><?php echo($dane['data']); ?></th><td>
 							 
 							
-							 <input style="color:black" type="submit" name="id_repertuaru" value="<?php echo($dane['id_repertuaru']);?>" data-toggle="modal" class="delete"><i  class="material-icons" data-toggle="tooltip" title="Usuń">&#xE872;</i></input></form>
-                    </tr>
+							 <input type="submit" name="id_repertuaru" value="<?php echo($dane['id_repertuaru']);?>" class="login-submit"></input></form>  
+							     </tr>
 							 <?php 
 							 }} ?>
                         
