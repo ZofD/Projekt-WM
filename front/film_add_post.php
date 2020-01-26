@@ -30,5 +30,5 @@ $json = json_decode($wynik, TRUE);
 if($json['message']){
     header('Location: index.php');
 }else{
-	header('Location: repertuar_add.php');
+	header('Location: film_add.php');
 }
