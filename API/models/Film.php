@@ -60,7 +60,7 @@ class Film{
     }
 
     public function deleteFilmById(){
-        'DELETE FROM ' . $this->table . ' WHERE id = ?';
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id_filmu = '.$this->id_filmu;
 
         try{
             if($this->conn->query($query) == TRUE){
