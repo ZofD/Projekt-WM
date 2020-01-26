@@ -127,7 +127,7 @@ $data = date("Y-m-d");
 					<ul>
 						<li><a href="index.php" >Kino</a></li>
 						<li><a href="podsumowanie.php" class="active">Podsumowanie</a></li>
-				
+						<li><a href="cennik.php" >Cennik</a></li>
 						<li><a href="contact-us.php" >Kontakt</a></li>
 						
 					</ul>

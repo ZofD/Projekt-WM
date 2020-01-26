@@ -104,7 +104,8 @@ $liczbaRzedow = 10;
 				<div class="row-2">
 					<ul>
                     <li><a href="index.php" >Kino</a></li>
-						<li><a href="Rejestracja.php" class="active">Rezerwacja</a></li>
+                        <li><a href="Rejestracja.php" class="active">Rezerwacja</a></li>
+                        <li><a href="cennik.php" >Cennik</a></li>
 						<li><a href="contact-us.php">Kontakt</a></li>
 						
 					</ul>
