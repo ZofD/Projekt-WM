@@ -18,13 +18,13 @@ try{
     $data = json_decode(file_get_contents('php://input'), TRUE);
 
     // $user->id = $data->id;
-    $user->id_uzytkownika = $data['id'];
+    $user->id_uzytkownika = $data['id_uzytkownika'];
 
     //utworz uzytkownika
     if($user->deleteUserById()){
-        echo json_encode(array('message' => 'User delete'));
+        echo json_encode(array('odp' => TRUE));
     }else{
-        echo json_encode(array('message' => 'User Not Exist'));
+        echo json_encode(array('odp' => FALSE));
     }
 }catch(Exception $e){
     echo json_encode(array('message' => $e->getMessage()));
