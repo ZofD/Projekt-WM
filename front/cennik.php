@@ -45,7 +45,7 @@ if($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])
 			<div id="header">
 				<div class="row-1">
 				<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-					<ul><li>Witaj <?php echo($_SESSION['login']); ?></li>
+					<ul><li>Witaj <?php echo($_SESSION['login']); ?>, <?php if($_SESSION['zalogowany']){?><a style="text-decoration: none;" href="logout.php">wyloguj</a><?php } ?></li>
 					<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<?php
@@ -64,9 +64,8 @@ if($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])
 						<?php if(!$_SESSION['zalogowany']){?>
 						<li><a href="register.php">Zarejestruj</a></li>
 						<li><a href="logowanie.php">Zaloguj</a></li>
-						<?php }else{?>
-						<li><a href="logout.php">Wyloguj</a></li>
-						<?php }?>
+						<?php } ?>
+						
 						<li><a href="cennik.php" class="active">Cennik</a></li>
 						<li><a href="contact-us.php" >Kontakt</a></li>
 						
