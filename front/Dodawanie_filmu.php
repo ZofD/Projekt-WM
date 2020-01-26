@@ -304,12 +304,17 @@ $(document).ready(function(){
 				<div class="row-2">
 					<ul>
 					
-					
+						<?php
+						if($_SESSION['admin'] == 2){
+						?>
 						<li><a href="Dodawanie_filmu.php" class="active" >Panel Filmów</a></li>
 						<li><a href="Panel_Admina.php" >Panel Admin</a></li>
 						<li><a href="Panel_Repertuaru.php">Panel Repertuaru</a></li>
+						<?php
+						}
+						?>
 						<li><a href="Panel_Pracownika.php">Panel Pracownika</a></li>
-						<li><a href="logowanie.php">Wyloguj</a></li>
+						<li><a href="logout.php">Wyloguj</a></li>
 						
 					</ul>
 				</div>
