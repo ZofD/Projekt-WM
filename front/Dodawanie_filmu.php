@@ -8,6 +8,14 @@ if (!isset($_SESSION['inicjuj']))
 	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 }
 
+if(!isset($_SESSION['admin'])){
+	header('Location: index.php');
+}else{
+	if($_SESSION['admin'] == 0){
+		header("Location: index.php");
+	}
+}
+
 include_once 'curl.php';
 $ch = new ClientURL();
 
