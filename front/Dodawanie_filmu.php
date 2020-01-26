@@ -356,7 +356,7 @@ $(document).ready(function(){
 						$tab = $json['data'];
 						foreach($tab as $r => $dane){ ?>
 					<tr>
-						<form action="repertuar_del.php" method="POST">
+						<form action="film_del.php" method="POST">
 							<td>
 							<span class="custom-checkbox">
 									<input type="checkbox" disabled>
@@ -366,7 +366,7 @@ $(document).ready(function(){
 							<td><?php echo($dane['tytul']); ?></td>
 							<td><?php echo($dane['rezyser']); ?></td>
 							<td>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<input type="submit" name="id_filmu" value="<?php echo($dane['id_filmu']);?>" class="login-submit"></input></form>
 							</td>
 						</form>
 					</tr>
