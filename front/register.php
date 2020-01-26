@@ -89,6 +89,7 @@
   <input name="mail" type="login" class="login-username" autofocus="true" required="true" placeholder="Mail" />
   <input name="passwordOne" type="password" class="login-password" required="true" placeholder="Hasło" />
   <input name="passwordTwo" type="password" class="login-password" required="true" placeholder="Powtórz hasło" />
+  <input name="admin"   type="hidden" value="0" class="login-password" required="true" placeholder="Typ konta user" />
   <input type="submit" name="zarejestruj" value="zarejestruj" class="login-submit" />
 </form>
 

@@ -307,7 +307,7 @@ $(document).ready(function(){
 						<li><a href="Panel_Admina.php"class="active">Panel Admin</a></li>
 						<li><a href="Panel_Repertuaru.php">Panel Repertuaru</a></li>
 						<li><a href="Panel_Pracownika.php">Panel Pracownika</a></li>
-						<li><a href="logowanie.php">Wyloguj</a></li>
+						<li><a href="logout.php">Wyloguj</a></li>
 						
 					</ul>
 				</div>
@@ -323,7 +323,7 @@ $(document).ready(function(){
 						<h2>Zarzadzanie <b>uzytkownikami</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Dodaj nowego pracownika</span></a>
+						<a href="register2.php" class="btn btn-success" ><i class="material-icons">&#xE147;</i> <span>Dodaj nowego pracownika</span></a>
 										
 					</div>
                 </div>
