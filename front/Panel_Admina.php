@@ -360,9 +360,9 @@ $(document).ready(function(){
 							<td><?php echo($dane['imie']); ?></td>
 							<td><?php echo($dane['email']); ?></td>
 							<td><?php 
-								if($dane['login'] == 0) echo("Klient"); 
-								if($dane['login'] == 1) echo("Pracownik"); 
-								if($dane['login'] == 2) echo("Administrator"); 
+								if($dane['admin'] == 0) echo("Klient"); 
+								if($dane['admin'] == 1) echo("Pracownik"); 
+								if($dane['admin'] == 2) echo("Administrator"); 
 							?></td>
 							<td><?php echo($dane['login']); ?></td>
 							<td>
