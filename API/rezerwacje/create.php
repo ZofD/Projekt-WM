@@ -25,16 +25,18 @@ try{
     $rezerwacja->iloscStudent = $data['iloscStudent'];
     $rezerwacja->id_repertuaruFKRez = $data['idRepertuaru'];
     $rezerwacja->cena = $data['cena'];
+    $rezerwacja->imie = $data['imie'];
+    $rezerwacja->nazwisko = $data['nazwisko'];
 
     if($rezerwacja->create()){
         $youCenRun = TRUE;
-        
 
         $arrayMiejsca = $data['miejsca'];
+        // var_dump($arrayMiejsca);
         for($i = 0; $i < count($arrayMiejsca); $i++){
             $rezerwacjeMiejsca = new RezerwacjeMiejsca($db);
 
-            $rezerwacjeMiejsca->id_miejscaFHRezMie = $data['miejsca'][$i];
+            $rezerwacjeMiejsca->id_miejscaFHRezMie = $arrayMiejsca[$i];
             $rezerwacjeMiejsca->id_rezerwacjiFKRezMie = $rezerwacja->id_rezerwacji;
 
             if(!$rezerwacjeMiejsca->create()){

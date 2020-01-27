@@ -62,7 +62,9 @@
             else $wyslij['bilet'] = 1;
             $wyslij['miejsca'] = $miejsca;
             $wyslij['cena'] = $cena;
-
+            $wyslij['imie'] = $imie; 
+            $wyslij['nazwisko'] = $nazwisko;
+            // var_dump(json_encode($wyslij));
             $ch->setPostURL($urlBaza1, json_encode($wyslij));
             $result = $ch->exec();
 

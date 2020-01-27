@@ -18,50 +18,62 @@ include_once 'curl.php';
 include_once 'fpdf.php';
 $url = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/repertuar/read_single.php';
 $urlBiznes = 'http://localhost:8080/WM/projekt/Projekt-WM/biznes/instruction/rezerwuj.php';
+$urlRezerwacje = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/miejsca.php';
 
 $ch = new ClientURL();
 
 $wyslij['id'] = $_GET['id'];
 
+if(isset($_GET['pr'])){
+	$chRM = new ClientURL();
+	$chRM->setPostURL($urlRezerwacje, json_encode(array('idRezerwacji' => intval($_GET['id']))));
+	$miejsca = $chRM->exec();
+	$miejsca = json_decode($miejsca, TRUE);
+	$_POST['miejsca'] = $miejsca['miejsca'];
+	foreach($_POST['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
+	$cena = $_POST['cena'];
+}
+
 // $ch->setPostURL($url, $wyslij);
 // $rezult = $ch->exec();
 if(isset($_POST['miejsca']) && isset($_POST['imie']) && isset($_POST['nazwisko']) && isset($_POST['iloscSzkolne']) && isset($_POST['iloscStudent'])){
-	$listonosz['data'] = $_SESSION['tytul'];//tytul
+	if(!isset($_GET['pr'])){
+		$listonosz['data'] = $_SESSION['tytul'];//tytul
 
-	$dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
+		$dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
 
 
-	foreach($_POST['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
+		foreach($_POST['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
 
-	$listonosz['godz'] = intval($dataRep->format('H'));
-	$listonosz['min'] = intval($dataRep->format('i'));
-	$listonosz['miesiac'] = intval($dataRep->format('m'));
-	$listonosz['dzien'] = intval($dataRep->format('d'));
-	$listonosz['rok'] = intval($dataRep->format('Y'));
-	$listonosz['idSali'] = intval($_SESSION['idSali']);
-	$listonosz['imie'] = $_POST['imie'];
-	$listonosz['nazwisko'] = $_POST['nazwisko'];
-	$listonosz['miejsca'] = $miejsca;
-	$listonosz['iloscUczen'] = intval($_POST['iloscSzkolne']);
-	$listonosz['iloscStudent'] = intval($_POST['iloscStudent']);
-	$listonosz['idRepertuaru'] = intval($_SESSION['idRepertuaru']);
-	$listonosz['idUzytkownika'] = intval($_SESSION['idUzytkownika']);
+		$listonosz['godz'] = intval($dataRep->format('H'));
+		$listonosz['min'] = intval($dataRep->format('i'));
+		$listonosz['miesiac'] = intval($dataRep->format('m'));
+		$listonosz['dzien'] = intval($dataRep->format('d'));
+		$listonosz['rok'] = intval($dataRep->format('Y'));
+		$listonosz['idSali'] = intval($_SESSION['idSali']);
+		$listonosz['imie'] = $_POST['imie'];
+		$listonosz['nazwisko'] = $_POST['nazwisko'];
+		$listonosz['miejsca'] = $miejsca;
+		$listonosz['iloscUczen'] = intval($_POST['iloscSzkolne']);
+		$listonosz['iloscStudent'] = intval($_POST['iloscStudent']);
+		$listonosz['idRepertuaru'] = intval($_SESSION['idRepertuaru']);
+		$listonosz['idUzytkownika'] = intval($_SESSION['idUzytkownika']);
 
-	$ch->setPostURL($urlBiznes, json_encode($listonosz));
-	$fromBiznesString = $ch->exec();
-	$fromBiznes = json_decode($fromBiznesString, TRUE);
-	// var_dump($fromBiznesString);
-	// var_dump($fromBiznes);
-	$cena = 0.0;
-	if($fromBiznes['rezerwacja']){
-		$cena = $fromBiznes['cena'];
-		$index = $fromBiznes['indexTabeliMiejsca'];
-		$_SESSION['cenaRez'] = $cena;
-	}else{
-		echo 'źle';
-		// header('Location: Rezerwacja.php?id='.$wyslij['id']);
+		$ch->setPostURL($urlBiznes, json_encode($listonosz));
+		$fromBiznesString = $ch->exec();
+		$fromBiznes = json_decode($fromBiznesString, TRUE);
+		// var_dump($fromBiznesString);
+		// var_dump($fromBiznes);
+		$cena = 0.0;
+		if($fromBiznes['rezerwacja']){
+			$cena = $fromBiznes['cena'];
+			$index = $fromBiznes['indexTabeliMiejsca'];
+			$_SESSION['cenaRez'] = $cena;
+		}else{
+			echo 'źle';
+			// header('Location: Rezerwacja.php?id='.$wyslij['id']);
+		}
 	}
-
 	$imie = $_POST['imie'];
 	$nazwisko = $_POST['nazwisko'];
 	$iloscSzkolne = intval($_POST['iloscSzkolne']);
@@ -142,32 +154,32 @@ $data = date("Y-m-d");
 				<div class="box">
 					<div class="border-right">
 						<div class="border-left">
-						<h3 style="padding-left: 50px"><span>Podsumowanie Rezerwacji</span></h3>
+						<h3 style="padding-left: 50px; padding-top: 10px"><span>Podsumowanie Rezerwacji</span></h3>
 							<form name="zatwierdz" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>&idRezerwacji=<?php 
 								if(isset($_GET['idRezerwacji'])) echo $_GET['idRezerwacji']; 
 								else echo -1; 
 							?>" method="POST">
-                               <h4 style="padding-left: 50px">Dane Klienta:</h4>
-						      		<p style="padding-left: 50px; font-weight: bold"><?php echo "Pan/Pani ".$imie." ".$nazwisko; ?></p>		
+                               <h4 style="padding-left: 50px">Dane klienta:</h4>
+						      		<p style="padding-left: 50px; font-weight: bold"><?php echo ($imie." ".$nazwisko); ?></p>		
 								<h4 style="padding-left: 50px">Zarezerwowane miejsca: </h4>
 						      		<p style="padding-left: 50px"><?php echo "Miejsca nr.:	   "; foreach($miejsca as $m => $dane){echo $dane.", ";} ?></p>
 								<h4 style="padding-left: 50px">Rodzaj biletów: </h4>
 						      		<p style="padding-left: 50px"><?php echo "Bilety szkolne: ".$iloscSzkolne.", Biletu studencke: ".$iloscStudenckie; ?></p>		
-								<h4 style="padding-left: 50px">Data sprzedaży: </h4>
+								<h4 style="padding-left: 50px">Data dokonania rezerwacji: </h4>
 									<p style="padding-left: 50px"><?php echo $data; ?></p>
-								<h4 style="padding-left: 50px">Łączna cena: </h4>
-									<p style="padding-left: 50px"><?php echo $cena; ?></p><br><br>
+								<h4 style="padding-left: 50px">Cena biletów: </h4>
+									<p style="padding-left: 50px"><?php echo $cena; ?></p><br>
 								<div class="wrapper" style="padding-left: 50px">
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
-								</div><br><br>
+								</div><br>
 							</form>
 							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 								<?php
-									if(intval($_SESSION['admin']) == 1) echo "<input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /> <br>";
+									if(intval($_SESSION['admin']) == 1 || intval($_SESSION['admin']) == 2) echo "<div class='wrapper' style='padding-left: 50px'><input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /></div> <br>";
 								?>
 							</form>
 							<form name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
-								<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" />
+							<div class="wrapper" style="padding-left: 50px">	<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" /></div>
 							</form>
 						</div>
 					</div>

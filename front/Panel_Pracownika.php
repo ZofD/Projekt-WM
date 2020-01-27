@@ -348,11 +348,16 @@ $(document).ready(function(){
 						$tab = $json['data'];
 						foreach($tab as $r => $dane){ ?>
 					<tr>
-						<form action="repertuar_del.php" method="POST">
+						<form action="podsumowanie.php?id=<?php echo $dane['id'];?>&pr=1" method="POST">
 						<td></td>
 						<td><?php echo($dane['id']); ?></td>
 							<td><?php echo($dane['imie']." ".$dane['nazwisko']); ?></td>
-							
+							<input type="text" name="imie" value=<?php echo $dane['imie'];?> class="login-submit" style="display: none;"/>
+							<input type="text" name="nazwisko" value=<?php echo $dane['nazwisko'];?> class="login-submit" style="display: none;"/>
+							<input type="text" name="iloscStudent" value=<?php echo $dane['iloscStudent'];?> class="login-submit" style="display: none;"/>
+							<input type="text" name="iloscSzkolne" value=<?php echo $dane['iloscUczen'];?> class="login-submit" style="display: none;"/>
+							<input type="text" name="iloscSzkolne" value=<?php echo $dane['iloscUczen'];?> class="login-submit" style="display: none;"/>
+							<input type="text" name="cena" value=<?php echo $dane['cena'];?> class="login-submit" style="display: none;"/>
 							<td>
 							<input type="submit" name="rezerwacja" value="Potwierdź rezerwacje" class="login-submit"></input>
                         	</td>
