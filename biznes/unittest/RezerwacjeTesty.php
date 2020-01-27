@@ -145,10 +145,10 @@ class RezerwacjeTest extends TestCase {
                 [3, $miejsca],
                 [4, $miejsca],
                 [5, $miejsca]];
-        for($i = 0; $i < count($dane); $i++){
+        for($i = 1; $i < count($dane); $i++){
             $rez = new Rezerwacje(1, "Łukasz","Kwaśny",$miejsca,0,4);
             $id = $rez->rezerwuj($dane[$i][0],$dane[$i][1]);
-            $this->assertGreaterThan(-1, $id);
+            $this->assertGreaterThan(0, $id);
         }
     }
 
@@ -165,6 +165,25 @@ class RezerwacjeTest extends TestCase {
             $rez = new Rezerwacje(1, "Łukasz","Kwaśny",$dane[$i][1],0,0);
             $id = $rez->rezerwuj($dane[$i][0],$dane[$i][1]);
             $this->assertEquals(-1, $id);
+        }
+    }
+
+    public function test_anuluj(){
+        $pusty = [];
+        $pusty = json_encode($pusty);
+        file_put_contents("miejsca.json", $pusty);
+        $miejsca = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20]];
+        $dane = [[1, $miejsca[0]],
+                [2, $miejsca[1]],
+                [3, $miejsca[2]],
+                [4, $miejsca[3]],
+                [5, $miejsca[4]]];
+        for($i = 0; $i < count($dane); $i++){
+            $rez = new Rezerwacje(1, "Łukasz","Kwaśny",$miejsca[1],0,4);
+            $id = $rez->rezerwuj($dane[$i][0],$dane[$i][1]);
+            $rez->anuluj($id);
+            $spr = json_decode(file_get_contents("miejsca.json"), TRUE);
+            $this->assertEquals($spr[$id][0], -1);
         }
     }
 
@@ -185,25 +204,6 @@ class RezerwacjeTest extends TestCase {
             $spr = json_decode(file_get_contents("miejsca.json"), TRUE);
             $index = $spr[$id];
             $this->assertEquals($spr[$id][1][sizeof($index,1) - 3], 1);
-        }
-    }
-
-    public function test_anuluj(){
-        $pusty = [];
-        $pusty = json_encode($pusty);
-        file_put_contents("miejsca.json", $pusty);
-        $miejsca = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16],[17,18,19,20]];
-        $dane = [[1, $miejsca[0]],
-                [2, $miejsca[1]],
-                [3, $miejsca[2]],
-                [4, $miejsca[3]],
-                [5, $miejsca[4]]];
-        for($i = 0; $i < count($dane); $i++){
-            $rez = new Rezerwacje(1, "Łukasz","Kwaśny",$miejsca[1],0,4);
-            $id = $rez->rezerwuj($dane[$i][0],$dane[$i][1]);
-            $rez->anuluj($id);
-            $spr = json_decode(file_get_contents("miejsca.json"), TRUE);
-            $this->assertEquals($spr[$id][0], -1);
         }
     }
 }

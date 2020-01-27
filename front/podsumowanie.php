@@ -139,7 +139,7 @@ $data = date("Y-m-d");
 					<div class="border-right">
 						<div class="border-left">
 						<h3 style="padding-left: 50px"><span>Podsumowanie Rezerwacji</span></h3>
-							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>?idRezerwacji=<?php 
+							<form name="zatwierdz" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>&idRezerwacji=<?php 
 								if(isset($_GET['idRezerwacji'])) echo $_GET['idRezerwacji']; 
 								else echo -1; 
 							?>" method="POST">
@@ -157,12 +157,12 @@ $data = date("Y-m-d");
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
 								</div><br><br>
 							</form>
-							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>" method="POST">
+							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 								<?php
 									if(intval($_SESSION['admin']) == 1) echo "<input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /> <br>";
 								?>
 							</form>
-							<form action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>?index=<?php echo $index; ?>" method="POST">
+							<form name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 								<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" />
 							</form>
 						</div>

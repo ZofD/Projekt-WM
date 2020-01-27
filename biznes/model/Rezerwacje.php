@@ -45,7 +45,6 @@ class Rezerwacje{
         $rezerwacje = json_decode(file_get_contents("miejsca.json"), TRUE);     //zapisuje dane do pliku z stanem 0 czyli wstepnie zajete
         $miejsca[] = 0;
         $k = 1;
-        $id = 0;
         foreach($rezerwacje as $r => $dane){
             if($dane[0] == $idRepertuar){
                 for($i = 0; $i < sizeof($miejsca) - 1; $i++){
