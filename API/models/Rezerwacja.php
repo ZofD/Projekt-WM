@@ -118,7 +118,7 @@
 
             if($stmt->execute()){
                 $stmt->closeCursor();
-                $this->getIdRezerwacji();
+                $this->id_rezerwacji = getIdRezerwacji();
                 return true;
             }
 
