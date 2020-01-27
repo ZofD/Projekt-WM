@@ -9,6 +9,7 @@
     $url = 'http://localhost:8080/WM/projekt/Projekt-WM/interfejs/podsumowanie.php';
     $urlBaza1 = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/create.php';  
     $urlBaza2 = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/bilet.php';
+    $urlloading = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/rezerwacje/miejsca.php';
 
     //odebranie danych
     header('Access-Control-Allow-Origin: *');
@@ -20,29 +21,33 @@
     foreach($listonosz['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
 
     $data = $listonosz['data'];
-    $godzina = intval($listonosz['godz']);
-    $minuta = intval($listonosz['min']);
-    $miesiac = intval($listonosz['miesiac']);
-    $dzien = intval($listonosz['dzien']);
-    $rok = intval($listonosz['rok']);
-    $sala = intval($listonosz['idSali']);
+    $godzina = $listonosz['godz'];
+    $minuta = $listonosz['min'];
+    $miesiac = $listonosz['miesiac'];
+    $dzien = $listonosz['dzien'];
+    $rok = $listonosz['rok'];
+    $sala = $listonosz['idSali'];
     $imie = $listonosz['imie'];
     $nazwisko = $listonosz['nazwisko'];
-    $iloscUczen = intval($listonosz['iloscUczen']);
-    $iloscStudent = intval($listonosz['iloscStudent']);
-    $idRepertuar = intval($listonosz['idRepertuaru']);
-    $idUzytkownika = intval($listonosz['idUzytkownika']);
-    $id = intval($listonosz['indexMiejscaTab']);
-    $admin = intval($listonosz['admin']);
-    $akcja = intval($listonosz['akcja']);
-    $idRezerwacji = intval($listonosz['idRezerwacji']);
-    $cena = intval($listonosz['cena']);
+    $iloscUczen = $listonosz['iloscUczen'];
+    $iloscStudent = $listonosz['iloscStudent'];
+    $idRepertuar = $listonosz['idRepertuaru'];
+    $idUzytkownika = $listonosz['idUzytkownika'];
+    $id = $listonosz['indexMiejscaTab'];
+    $admin = $listonosz['admin'];
+    $akcja = $listonosz['akcja'];
+    $idRezerwacji = $listonosz['idRezerwacji'];
+    $cena = $listonosz['cena'];
 
     $Repertuar = new Repertuar($data, $godzina, $minuta, $miesiac, $dzien, $rok, $sala);
     $Rezerwacja = new Rezerwacje($Repertuar, $imie, $nazwisko, $miejsca, $iloscUczen, $iloscStudent);
 
     if($akcja == 2){
         $Rezerwacja->anuluj($id);
+
+        $json = json_decode(file_get_contents("miejsca.json"), TRUE);
+        $ch->setPostURL($urlloading, json_encode($json));
+        $ch->exec();
 
         echo json_encode(array('odp' => TRUE));
     }else{

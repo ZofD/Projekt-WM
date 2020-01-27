@@ -48,7 +48,7 @@
         $Ceny = new Ceny();
 
         $wyslij['rezerwacja'] = true;
-        $wyslij['cena'] = $Rezerwacja->obliczCene($Ceny, date('N', $dzienTygodnia));
+        $wyslij['cena'] = $Rezerwacja->obliczCene($Ceny, date('N', $dzienTygodnia) - 1);
         $wyslij['indexTabeliMiejsca'] = $index;
     }
 

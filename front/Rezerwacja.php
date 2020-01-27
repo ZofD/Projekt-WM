@@ -154,7 +154,7 @@ $liczbaRzedow = 10;
                             echo "<tr>";
                             
                                 for($i = 0; $i < $liczbaMiejscRzedu; $i++){
-                                    $numerM = $j*10+$i;
+                                    $numerM = $j*$liczbaMiejscRzedu+$i;
                                     $zajete = FALSE;
                                     if($jsonMiejsca != null)
                                         for($x = 0; $x < count($jsonMiejsca); $x++){
@@ -170,9 +170,9 @@ $liczbaRzedow = 10;
                                             // echo "<br/>";
                                         }
                                     if($zajete){
-                                        echo "<td class=''><input type='checkbox' name='miejsca[]' class='seats rez' value='".($j*10+$i)."'></td>";
+                                        echo "<td class=''><input type='checkbox' name='miejsca[]' class='seats rez' value='".($j*$liczbaMiejscRzedu+$i)."'></td>";
                                     }else{
-                                        echo "<td class=''><input type='checkbox' name='miejsca[]' class='seats not' value='".($j*10+$i)."'></td>";
+                                        echo "<td class=''><input type='checkbox' name='miejsca[]' class='seats not' value='".($j*$liczbaMiejscRzedu+$i)."'></td>";
                                     }
                                 }
                             echo "</tr>";

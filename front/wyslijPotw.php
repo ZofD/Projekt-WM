@@ -8,8 +8,6 @@ include_once 'fpdf.php';
 $urlBiznes1 = 'http://localhost:8080/WM/projekt/Projekt-WM/biznes/instruction/potwierdz.php';
 $urlBiznes2 = 'http://localhost:8080/WM/projekt/Projekt-WM/biznes/instruction/drukuj.php';
 
-$ch = new ClientURL();
-
 // $ch->setPostURL($url, $wyslij);
 // $rezult = $ch->exec();
 
@@ -37,37 +35,35 @@ $listonosz['admin'] = intval($_SESSION['admin']);
 $listonosz['cena'] = $_SESSION['cenaRez'];
 
 if(isset($_POST['zatwierdz'])){ 
+    $ch = new ClientURL();
     $listonosz['idRezerwacji'] = intval($_GET['idRezerwacji']);
     $listonosz['akcja'] = 0;
-    var_dump($listonosz);
-//     $ch->setPostURL($urlBiznes1, $listonosz);
-//     $fromBiznes = $ch->exec();
-//     $fromBiznes = json_decode($fromBiznes, TRUE);
-//     if($fromBiznes['odp']){
-//         header('Location: index.php');
-//     }else{
-//         header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index);
-//     }
-// }
+    $ch->setPostURL($urlBiznes1, json_encode($listonosz));
+    $fromBiznes = $ch->exec();
+    $fromBiznes = json_decode($fromBiznes, TRUE);
+    if($fromBiznes['odp']) header('Location: index.php');
+    else header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
+}
 
-// if(isset($_POST['drukuj'])){
-//     $listonosz['akcja'] = 1;
-//     $ch->setPostURL($urlBiznes2, $listonosz);
-//     $fromBiznes = $ch->exec();
-//     $bilet = json_decode($fromBiznes, TRUE);
-//     if($bilet['odp']) var_dump($bilet['bilet']);
-//     header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index);
-// }
+if(isset($_POST['drukuj'])){
+    $ch = new ClientURL();
+    $listonosz['akcja'] = 1;
+    $ch->setPostURL($urlBiznes2, json_encode($listonosz));
+    $fromBiznes = $ch->exec();
+    $bilet = json_decode($fromBiznes, TRUE);
+    // if($bilet['odp']) var_dump($bilet['bilet']);
+    header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
+}
 
-// if(isset($_POST['anuluj'])){
-//     $listonosz['akcja'] = 2;
-//     $ch->setPostURL($urlBiznes1, $listonosz);
-//     $fromBiznes = $ch->exec();
-//     $fromBiznes = json_decode($fromBiznes, TRUE);
-//     if($fromBiznes['odp']){
-//         header('Location: index.php');
-//     }else{
-//         header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index);
-//     }
+if(isset($_POST['anuluj'])){
+    $ch = new ClientURL();
+    $listonosz['idRezerwacji'] = intval($_GET['idRezerwacji']);
+    $listonosz['akcja'] = 2;
+    $ch->setPostURL($urlBiznes1, json_encode($listonosz));
+    $fromBiznes = $ch->exec();
+    var_dump($fromBiznes);
+    $fromBiznes = json_decode($fromBiznes, TRUE);
+    if($fromBiznes['odp'])header('Location: index.php');
+    else header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
 }
 ?>

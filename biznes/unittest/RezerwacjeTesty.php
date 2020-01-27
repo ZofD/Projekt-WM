@@ -145,10 +145,10 @@ class RezerwacjeTest extends TestCase {
                 [3, $miejsca],
                 [4, $miejsca],
                 [5, $miejsca]];
-        for($i = 1; $i < count($dane); $i++){
+        for($i = 0; $i < count($dane); $i++){
             $rez = new Rezerwacje(1, "Łukasz","Kwaśny",$miejsca,0,4);
             $id = $rez->rezerwuj($dane[$i][0],$dane[$i][1]);
-            $this->assertGreaterThan(0, $id);
+            $this->assertEquals($i, $id);
         }
     }
 

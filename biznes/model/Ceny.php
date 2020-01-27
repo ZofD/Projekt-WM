@@ -8,8 +8,8 @@ class Ceny{
 
     public function __construct(){
         $ceny = json_decode(file_get_contents("ceny.json"), TRUE);
-        $this->ulgaSzkolna = $ceny[0];
-        $this->ulgaStudencka = $ceny[1];
+        $this->ulgaSzkolna = $ceny[1];
+        $this->ulgaStudencka = $ceny[0];
         $this->cenyBiletow = $ceny[2];
     }
 
