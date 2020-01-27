@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-	
+	if(!isset($_SESSION['zalogowany'])){
+		$_SESSION['zalogowany'] = FALSE;
+	}
 	// if (!isset($_SESSION['inicjuj']))
 	// {
 	// 	session_regenerate_id();
