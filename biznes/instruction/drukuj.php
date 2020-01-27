@@ -7,7 +7,7 @@
 
     $ch = new ClientURL();
     $url = 'http://localhost:8080/WM/projekt/Projekt-WM/interfejs/potwierdzenie.php';
-    $urlBaza = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/';  //dokończyć
+    $urlBaza = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/bilet.php';  //dokończyć
 
     //odebranie danych
     header('Access-Control-Allow-Origin: *');

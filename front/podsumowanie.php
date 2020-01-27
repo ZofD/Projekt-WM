@@ -15,6 +15,7 @@ session_start();
 	// 	die('Proba przejecia sesji udaremniona!');	
 	// }
 include_once 'curl.php';
+include_once 'fpdf.php';
 $url = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/repertuar/read_single.php';
 $urlBiznes = 'http://localhost:8080/WM/projekt/Projekt-WM/biznes/instruction/rezerwuj.php';
 
@@ -82,7 +83,9 @@ else{
 		$cena = $_SESSION['cenaRez'];
 	}else echo "to nie tak";
 }	 
-
+$pdf = new FPDF('L', 'mm', array(100, 150));
+var_dump($pdf);
+// $pdf->Output();
 $data = date("Y-m-d");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">

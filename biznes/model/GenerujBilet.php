@@ -1,5 +1,5 @@
 <?php
-include_once "./fpdf.php";
+include_once "../fpdf.php";
 include_once 'Bilet.php';
 include_once 'Sala.php';
 include_once 'Repertuar.php';
@@ -22,6 +22,7 @@ class GenerujBilet extends FPDF{
         $this->iloscStudent = $iloscStudent;
         $this->sala = $sala;
         $this->film = $film;
+        // parent::__construct('L', 'A4', 0);
     }
     
     function header(){
