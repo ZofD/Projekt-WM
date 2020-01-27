@@ -23,19 +23,13 @@
         }
 
         public function getRezerwacjaMiejscaById(){
-            $query = 'SELECT id_rezerwacji, id_miejsca FROM ' . $this->table . ' WHERE id = ?';
+            $query = 'SELECT id_rezerwacji, id_miejsca FROM ' . $this->table . ' WHERE id_rezerwacji = '.$this->id_rezerwacjiFKRezMie;
 
             $stmt = $this->conn->prepare($query);
 
-            //dodanie parametru
-            $stmt->BindParam(1, $this->id);
-
             $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            $this->id_miejscaFHRezMie = $row['id_rezerwacji'];
-            $this->id_rezerwacjiFKRezMie = $row['id_miejsca'];
+            return $stmt;
         }
 
         public function deleteRezerwacjeMiejscaById(){
