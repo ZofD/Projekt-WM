@@ -44,9 +44,8 @@ if($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])
 <!-- HEADER -->
 			<div id="header">
 				<div class="row-1">
-				<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-				<ul><li>Witaj <?php echo($_SESSION['login']); ?>, <?php if($_SESSION['zalogowany']){?><a style="text-decoration: none;" href="logout.php">wyloguj</a><?php } ?></li>
-				
+				<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div><ul>
+				<?php if($_SESSION['zalogowany']){ ?> <li>Witaj <?php echo($_SESSION['login']);  echo(", ");} if($_SESSION['zalogowany']){?><a style="text-decoration: none;" href="logout.php">wyloguj</a><?php } ?></li>
 					<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<?php
@@ -80,14 +79,14 @@ if($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])
 					<div class="border-right">
 						<div class="border-left">
 							<div class="inner">
-								<h3>Nasze <span>Dane</span></h3>
+								<h3>Dane kontaktowe</h3>
 								<div class="address">
-									<div class="fleft"><span>Adres:</span>Rzeszów Podwisłocze 54<br />
-										<span>Kraj:</span>Polska<br />
-										<span>Tel:</span>+354 5635600<br />
-										<span>Fax:</span>+354 5635610</div>
-									<div class="extra-wrap"><span>info:</span><br />
-										Zapraszamy do kina, bilety można rezerować poprzez strone internetową oraz osobiście w kasach biletowych. W razie pytań prosimy o wysłanie poniższego formularza.</div>
+									<div class="fleft"><span>Adres:</span>Rzeszów<br />
+										<span> &nbsp; &nbsp; &nbsp; &nbsp; </span>ul. Podwisłocze 54<br />
+										<span>Telefon:</span>+4845635600<br />
+										</div>
+									<div class="extra-wrap">
+									Zapraszamy do zapoznania się z repertuarem. Bilety można rezerować poprzez strone internetową oraz osobiście w kasach biletowych. Każdy zarezerwowany bilet należy opłacić do 15 minut przez seansem. Bilet zostanie wydrukowany przez pracownika.</div>
 								</div>
 							</div>
 						</div>

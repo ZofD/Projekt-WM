@@ -334,9 +334,10 @@ $(document).ready(function(){
                 <thead>
                     <tr>
 					<th></th>
+					<th>ID rezerwacji</th>
                         <th>Dane rezerwujacego</th>
-                        <th>Nr Sali</th>
-						
+                        
+						<th>Wykonaj akcję</th>
                         
                         
                     </tr>
@@ -348,11 +349,12 @@ $(document).ready(function(){
 						foreach($tab as $r => $dane){ ?>
 					<tr>
 						<form action="repertuar_del.php" method="POST">
-						<th></th>
-							<td><?php echo($dane['id']." ".$dane['imie']." ".$dane['nazwisko']); ?></td>
+						<td></td>
+						<td><?php echo($dane['id']); ?></td>
+							<td><?php echo($dane['imie']." ".$dane['nazwisko']); ?></td>
+							
 							<td>
-							<td>
-                            	<a href="index.php" class="btn btn-success" data-toggle="modal"><span>Potwierdz</span></a>
+							<input type="submit" name="rezerwacja" value="Potwierdź rezerwacje" class="login-submit"></input>
                         	</td>
 						</form>
 					</tr>
