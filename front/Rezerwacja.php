@@ -146,7 +146,6 @@ $liczbaRzedow = 10;
             <br>
             <div class='seatStructure'>
                 <div class="notification"></div>
-                <ul style="text-align: center; margin-bottom:0px; color:black;"><li>Wybrane siedzenia</li><li>Zarezerwowane siedzenia</li><li>Puste siedzenia</li></ul>
                 <table style="margin:auto">
                     <?php
                         // var_dump($jsonMiejsca);
@@ -183,10 +182,10 @@ $liczbaRzedow = 10;
                 <div class="screen">
                 <h3 style="margin:auto;padding-top:15px; padding-left:15px; color:black; text-align:center">EKRAN KINA</h2>
                 </div><br>
-                <div style="margin-left: 41.5%">
-                    <a href="index.php" style="text-decoration: none" value="Powrót" class="login-submit2">Powrót</a>
-                    <input name="Podsumowanie" value="Podsumowanie" class="login-submit2" type="submit"/> 
-                </div> 
+                <input name="Podsumowanie"  style="margin-left: 44%" value="Podsumowanie" class="login-submit2" type="submit"/> <br><br>
+                    <a href="index.php" style="text-decoration: none; margin-left: 47%" value="Powrót" class="login-submit2">Powrót</a>
+                   
+       
 
     </form>
 
@@ -203,7 +202,7 @@ $liczbaRzedow = 10;
 
         function takeData() {
             if ($("#Username").val().length == 0 || $("#Numseats").val().length == 0 || parseInt($("#szkolny").val()) + parseInt($("#student").val()) > parseInt($("#Numseats").val())) {
-                alert("podaj wszystkie dane lub zmień ilość ulg (nie mogą przekraczać liczby miejsc)");
+                alert("Podaj wszystkie dane lub zmień ilość ulg, tak aby nie przekroczyć zadeklarowanej liczby miejsc.");
             } else {
                 $(".login-submit").prop("disabled", true);
                 $('.login-username2').prop("readonly", true);
