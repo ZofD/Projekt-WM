@@ -41,6 +41,7 @@ if(isset($_POST['zatwierdz'])){
     $ch->setPostURL($urlBiznes1, json_encode($listonosz));
     $fromBiznes = $ch->exec();
     $fromBiznes = json_decode($fromBiznes, TRUE);
+    var_dump($fromBiznes);
     if($fromBiznes['odp']) header('Location: index.php');
     else header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
 }

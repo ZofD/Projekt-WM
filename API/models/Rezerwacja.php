@@ -96,8 +96,10 @@
             user_id = :id_uzytkownikaFKRez,
             ilosc_uczen_senior = :iloscUczen,
             ilosc_student = :iloscStudent,
-            id_repertuaru = :id_repertuaruFKRez;
-            cena = :cena
+            id_repertuaru = :id_repertuaruFKRez,
+            cena = :cena,
+            imie = :imie,
+            nazwisko = :nazwisko;
             ';
 
             $stmt = $this->conn->prepare($query);
@@ -108,6 +110,9 @@
             $this->iloscUczen = htmlspecialchars(strip_tags($this->iloscUczen));
             $this->iloscStudent = htmlspecialchars(strip_tags($this->iloscStudent));
             $this->id_repertuaruFKRez = htmlspecialchars(strip_tags($this->id_repertuaruFKRez));
+            $this->cena = htmlspecialchars(strip_tags($this->cena));
+            $this->imie = htmlspecialchars(strip_tags($this->imie));
+            $this->nazwisko = htmlspecialchars(strip_tags($this->nazwisko));
 
             $stmt->bindParam(':bilet', $this->bilet);
             $stmt->bindParam(':id_uzytkownikaFKRez', $this->id_uzytkownikaFKRez);
@@ -115,10 +120,12 @@
             $stmt->bindParam(':iloscStudent', $this->iloscStudent);
             $stmt->bindParam(':id_repertuaruFKRez', $this->id_repertuaruFKRez);
             $stmt->bindParam(':cena', $this->cena);
+            $stmt->bindParam(':imie', $this->imie);
+            $stmt->bindParam(':nazwisko', $this->nazwisko);
 
             if($stmt->execute()){
                 $stmt->closeCursor();
-                $this->id_rezerwacji = getIdRezerwacji();
+                $this->getIdRezerwacji();
                 return true;
             }
 
