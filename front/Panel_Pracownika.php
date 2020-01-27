@@ -287,7 +287,8 @@ $(document).ready(function(){
 			<div id="header">
 				<div class="row-1">
 					<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-					<ul><li>Witaj <?php echo($_SESSION['login']); ?></li>
+					<ul><li>Witaj <?php echo($_SESSION['login']); ?>, <?php if($_SESSION['zalogowany']){?><a style="text-decoration: none;" href="logout.php">wyloguj</a><?php } ?></li>
+				
 						<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
@@ -308,7 +309,7 @@ $(document).ready(function(){
 						}
 						?>
 						<li><a href="Panel_Pracownika.php"class="active">Panel Pracownika</a></li>
-						<li><a href="logout.php">Wyloguj</a></li>
+				
 						
 					</ul>
 				</div>
@@ -332,12 +333,7 @@ $(document).ready(function(){
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
+					<th></th>
                         <th>Dane rezerwujacego</th>
                         <th>Nr Sali</th>
 						
@@ -352,12 +348,7 @@ $(document).ready(function(){
 						foreach($tab as $r => $dane){ ?>
 					<tr>
 						<form action="repertuar_del.php" method="POST">
-							<td>
-							<span class="custom-checkbox">
-									<input type="checkbox" >
-									<label for="selectAll"></label>
-								</span>
-							</td>
+						<th></th>
 							<td><?php echo($dane['id']." ".$dane['imie']." ".$dane['nazwisko']); ?></td>
 							<td>
 							<td>

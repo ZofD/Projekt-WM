@@ -39,7 +39,8 @@
 			<div id="header">
 				<div class="row-1">
 				<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-				<ul><li>Witaj <?php echo($_SESSION['login']); ?></li>
+				<ul><li>Witaj <?php echo($_SESSION['login']); ?>, <?php if($_SESSION['zalogowany']){?><a style="text-decoration: none;" href="logout.php">wyloguj</a><?php } ?></li>
+				
 					<li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<li><a href="Panel_Pracownika.php"><img src="images/icon3.gif" alt="" /></a></li>
@@ -53,7 +54,7 @@
 						<li><a href="Panel_Admina.php">Panel Admin</a></li>
 						<li><a href="Panel_Repertuaru.php" class="active">Panel Repertuaru</a></li>
 						<li><a href="Panel_Pracownika.php">Panel Pracownika</a></li>
-						<li><a href="logout.php">Wyloguj</a></li>
+					
 					</ul>
 				</div>
 			</div>
@@ -78,8 +79,8 @@
   <form action="repertuar_add_post.php" method="POST">
   <h4 style="padding-bottom:0px">Dodaj repertuar</h4>
   <input type="film" name="film" class="login-username" autofocus="true" required="true" placeholder="ID filmu" />
-  <input type="id_sali" name="id_sali" class="login-password" required="true" placeholder="ID sali" />
-  <input type="text" name="date" class="login-password" value="2020-01-29 08:00:00" required="true" placeholder="data" />
+  <input type="id_sali" name="id_sali" class="login-password" required="true" placeholder="Numer sali" />
+  <input type="text" name="date" class="login-password" value="2020-02-29 08:00:00" required="true" placeholder="data" />
   <input type="submit" name="LoginButton" value="Dodaj repertuar" class="login-submit" />
 </form>
 

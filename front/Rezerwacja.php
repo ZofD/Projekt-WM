@@ -87,7 +87,8 @@ $liczbaRzedow = 10;
 			<div id="header">
 				<div class="row-1">
 					<div class="fleft"><a href="index.php">Kino<span>URZ</span></a></div>
-					<ul><li>Witaj <?php echo($_SESSION['login']); ?></li>
+                    <ul><li>Witaj <?php echo($_SESSION['login']); ?>, <?php if($_SESSION['zalogowany']){?><a style="text-decoration: none;" href="logout.php">wyloguj</a><?php } ?></li>
+				
                         <li><a href="index.php"><img src="images/icon1-act.gif" alt="" /></a></li>
 						<li><a href="contact-us.php"><img src="images/icon2.gif" alt="" /></a></li>
 						<?php
@@ -103,7 +104,8 @@ $liczbaRzedow = 10;
 				<div class="row-2">
 					<ul>
                     <li><a href="index.php" >Kino</a></li>
-						<li><a href="Rejestracja.php" class="active">Rezerwacja</a></li>
+                        <li><a href="Rejestracja.php" class="active">Rezerwacja</a></li>
+                        <li><a href="cennik.php" >Cennik</a></li>
 						<li><a href="contact-us.php">Kontakt</a></li>
 						
 					</ul>
