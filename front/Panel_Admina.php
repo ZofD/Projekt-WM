@@ -337,18 +337,13 @@ $(document).ready(function(){
             </div>
             <table class="table table-striped table-hover">
                 <thead>
-                    <tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll">
-								<label for="selectAll"></label>
-							</span>
-						</th>
-                        <th>Imie i Nazwisko</th>
-                        <th>Email</th>
+                    <tr><th></th>
+					<th>Login</th>
+                        <th>Imię i nazwisko</th>
+                        <th>Mail</th>
 						<th>Typ Konta</th>
-                        <th>Login</th>
-                        <th>Akcja</th>
+                       
+                        <th>Usuń po ID użytkownika</th>
                     </tr>
                 </thead>
                 <tbody>							
@@ -357,21 +352,16 @@ $(document).ready(function(){
 						$tab = $json['data'];
 						foreach($tab as $r => $dane){ ?>
 					<tr>
-						<form action="user_del.php" method="POST">
-							<td>
-							<span class="custom-checkbox">
-									<input type="checkbox" >
-									<label for="selectAll"></label>
-								</span>
-							</td>
-							<td><?php echo($dane['imie']); ?></td>
+						<form action="user_del.php" method="POST"><th></th>
+						<td><?php echo($dane['login']); ?></td>
+							<td><?php echo($dane['imie']); ?> <?php echo($dane['nazwisko']); ?></td>
 							<td><?php echo($dane['email']); ?></td>
 							<td><?php 
 								if($dane['admin'] == 0) echo("Klient"); 
 								if($dane['admin'] == 1) echo("Pracownik"); 
 								if($dane['admin'] == 2) echo("Administrator"); 
 							?></td>
-							<td><?php echo($dane['login']); ?></td>
+							
 							<td>
 								<input type="submit" name="id_uzytkownika" value="<?php echo($dane['id']);?>" class="login-submit"></input></form>
 							</td>

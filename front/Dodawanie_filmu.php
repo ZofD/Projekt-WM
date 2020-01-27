@@ -338,15 +338,11 @@ $(document).ready(function(){
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll" disabled>
-								<label for="selectAll"></label>
-							</span>
-						</th>
+					<th></th>
+						<th>ID filmu</th>
                         <th>Tytuł</th>
                         <th>Reżyser</th>
-						<th>Usuń film</th>
+						<th>Usuń po ID filmu</th>
 						
                        
                     </tr>
@@ -358,12 +354,8 @@ $(document).ready(function(){
 						foreach($tab as $r => $dane){ ?>
 					<tr>
 						<form action="film_del.php" method="POST">
-							<td>
-							<span class="custom-checkbox">
-									<input type="checkbox" disabled>
-									<label for="selectAll"></label>
-								</span>
-							</td>
+						<th></th>
+							<td><?php echo($dane['id_filmu']); ?></td>
 							<td><?php echo($dane['tytul']); ?></td>
 							<td><?php echo($dane['rezyser']); ?></td>
 							<td>

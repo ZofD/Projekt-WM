@@ -337,14 +337,9 @@ $(document).ready(function(){
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="selectAll" disabled>
-								<label for="selectAll"></label>
-							</span>
-						</th>
-                        <th>Id filmu</th>
-                        <th>Nr Sali</th>
+					<th></th>
+                        <th>ID filmu</th>
+                        <th>Numer Sali</th>
 						<th>Data</th>
 						<th>Usuń po ID repertuaru</th>
                         
@@ -356,10 +351,8 @@ $(document).ready(function(){
 						if(is_array($json)){
 							foreach($json as $r => $dane){ ?>
 							<form action="repertuar_del.php" method="POST">
-							<th> <span class="custom-checkbox">
-								<input type="checkbox" disabled>
-								<label for="selectAll"></label>
-							</span></th><th><?php echo($dane['film']['id_filmu']); ?></th>
+							<th></th>
+							<th><?php echo($dane['film']['id_filmu']); ?></th>
 							 <th><?php echo($dane['id_sali']); ?></th>
 							 <th><?php echo($dane['data']); ?></th><td>
 							 
