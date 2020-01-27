@@ -36,8 +36,8 @@
     $dzienTygodnia = mktime($godzina, $minuta, 0, $miesiac, $dzien, $rok);
 
     $Repertuar = new Repertuar($data, $godzina, $minuta, $miesiac, $dzien, $rok, $sala);
-    $Bilet = new Bilet($Repertuar, $imie, $nazwisko, $miejsca, $iloscUczen, $iloscStudent);
-    $doDruku = $Bilet->drukujBilet($sala, $data);
+    $Bilet = new Bilet($Repertuar, $imie, $nazwisko, $miejsca, $iloscUczen, $iloscStudent, $sala, $dzienTygodnia);
+    $doDruku = $Bilet->drukujBilet();
 
     $wyslij['idRezerwacji'] = $idRezerwacji;
     $ch->setPostURL($urlBaza, json_encode($wyslij));

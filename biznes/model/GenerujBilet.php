@@ -22,21 +22,20 @@ class GenerujBilet extends FPDF{
         $this->iloscStudent = $iloscStudent;
         $this->sala = $sala;
         $this->film = $film;
-        // parent::__construct('L', 'A4', 0);
     }
     
     function header(){
-        // $this->Image('img_z_logiem_kina.png' ,10,6);
+        // $this->Image('logo.png' ,10,6);
         $this->SetFont('Arial','B',14);
         $this->Cell(276,5,'BILET KINOWY',0,0,'C');
         $this->Ln();
         $this->SetFont('Times','',12);
-        $this->Cell(276,10,'Dane Kupujących',0,0,'C');
-        $this->Ln(20);
+        $this->Cell(276,10,'Dane Kupujacych',0,0,'C');
+        $this->Ln();
     }
     function footer(){
         $this->SetY(-15);
-        $this->SetFont('Arial','',8);
+        $this->SetFont('Arial','',0);
         $this->Cell(0,10,'Strona' .$this->PageNo().'/{nb}',0,0,'C');               
     }
     function headerTable(){
@@ -52,7 +51,6 @@ class GenerujBilet extends FPDF{
     }
     function mainTable(){
         $this->SetFont('Times','',12);
-        
         $this->Cell(20,10,$this->imie,1,0,'C');
         $this->Cell(40,10,$this->nazwisko,1,0,'C');
         $this->Cell(40,10,$this->miejsca,1,0,'C');

@@ -48,11 +48,12 @@ if(isset($_POST['zatwierdz'])){
 
 if(isset($_POST['drukuj'])){
     $ch = new ClientURL();
+    $listonosz['idRezerwacji'] = intval($_GET['idRezerwacji']);
     $listonosz['akcja'] = 1;
     $ch->setPostURL($urlBiznes2, json_encode($listonosz));
     $fromBiznes = $ch->exec();
+    var_dump($fromBiznes);
     $bilet = json_decode($fromBiznes, TRUE);
-    var_dump($bilet);
     // header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
 }
 

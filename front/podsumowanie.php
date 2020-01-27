@@ -27,9 +27,9 @@ $wyslij['id'] = $_GET['id'];
 if(isset($_GET['pr'])){
 	$chRM = new ClientURL();
 	$chRM->setPostURL($urlRezerwacje, json_encode(array('idRezerwacji' => intval($_GET['id']))));
-	$miejsca = $chRM->exec();
-	$miejsca = json_decode($miejsca, TRUE);
-	$_POST['miejsca'] = $miejsca['miejsca'];
+	$miejsca2 = $chRM->exec();
+	$miejsca2 = json_decode($miejsca2, TRUE);
+	$_POST['miejsca'] = $miejsca2['miejsca'];
 	foreach($_POST['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
 	$cena = $_POST['cena'];
 }
@@ -96,7 +96,7 @@ else{
 	}else echo "to nie tak";
 }	 
 $pdf = new FPDF('L', 'mm', array(100, 150));
-var_dump($pdf);
+// var_dump($pdf);
 // $pdf->Output();
 $data = date("Y-m-d");
 ?>
@@ -173,7 +173,10 @@ $data = date("Y-m-d");
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
 								</div><br>
 							</form>
-							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
+							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>&idRezerwacji=<?php 
+								if(isset($_GET['idRezerwacji'])) echo $_GET['idRezerwacji']; 
+								else echo -1; 
+							?>" method="POST">
 								<?php
 									if(intval($_SESSION['admin']) == 1 || intval($_SESSION['admin']) == 2) echo "<div class='wrapper' style='padding-left: 50px'><input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /></div> <br>";
 								?>
