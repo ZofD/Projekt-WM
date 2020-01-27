@@ -139,32 +139,32 @@ $data = date("Y-m-d");
 				<div class="box">
 					<div class="border-right">
 						<div class="border-left">
-						<h3 style="padding-left: 50px"><span>Podsumowanie Rezerwacji</span></h3>
+						<h3 style="padding-left: 50px; padding-top: 10px"><span>Podsumowanie Rezerwacji</span></h3>
 							<form name="zatwierdz" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>&idRezerwacji=<?php 
 								if(isset($_GET['idRezerwacji'])) echo $_GET['idRezerwacji']; 
 								else echo -1; 
 							?>" method="POST">
-                               <h4 style="padding-left: 50px">Dane Klienta:</h4>
-						      		<p style="padding-left: 50px; font-weight: bold"><?php echo "Pan/Pani ".$imie." ".$nazwisko; ?></p>		
+                               <h4 style="padding-left: 50px">Dane klienta:</h4>
+						      		<p style="padding-left: 50px; font-weight: bold"><?php echo ($imie." ".$nazwisko); ?></p>		
 								<h4 style="padding-left: 50px">Zarezerwowane miejsca: </h4>
 						      		<p style="padding-left: 50px"><?php echo "Miejsca nr.:	   "; foreach($miejsca as $m => $dane){echo $dane.", ";} ?></p>
 								<h4 style="padding-left: 50px">Rodzaj biletów: </h4>
 						      		<p style="padding-left: 50px"><?php echo "Bilety szkolne: ".$iloscSzkolne.", Biletu studencke: ".$iloscStudenckie; ?></p>		
-								<h4 style="padding-left: 50px">Data sprzedaży: </h4>
+								<h4 style="padding-left: 50px">Data dokonania rezerwacji: </h4>
 									<p style="padding-left: 50px"><?php echo $data; ?></p>
-								<h4 style="padding-left: 50px">Łączna cena: </h4>
-									<p style="padding-left: 50px"><?php echo $cena; ?></p><br><br>
+								<h4 style="padding-left: 50px">Cena biletów: </h4>
+									<p style="padding-left: 50px"><?php echo $cena; ?></p><br>
 								<div class="wrapper" style="padding-left: 50px">
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
-								</div><br><br>
+								</div><br>
 							</form>
 							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 								<?php
-									if(intval($_SESSION['admin']) == 1) echo "<input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /> <br>";
+									if(intval($_SESSION['admin']) == 1 || intval($_SESSION['admin']) == 2) echo "<div class='wrapper' style='padding-left: 50px'><input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /></div> <br>";
 								?>
 							</form>
 							<form name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
-								<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" />
+							<div class="wrapper" style="padding-left: 50px">	<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" /></div>
 							</form>
 						</div>
 					</div>
