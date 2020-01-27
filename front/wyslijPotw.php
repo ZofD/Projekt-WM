@@ -54,7 +54,7 @@ if(isset($_POST['drukuj'])){
     $fromBiznes = $ch->exec();
     var_dump($fromBiznes);
     $bilet = json_decode($fromBiznes, TRUE);
-    // header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
+    header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
 }
 
 if(isset($_POST['anuluj'])){
