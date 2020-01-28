@@ -174,7 +174,7 @@ $data = date("Y-m-d");
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
 								</div><br>
 							</form>
-							<div class="wrapper" style="padding-left: 50px"><a class="koniec" href="GenerowanieBiletu.php" target="_blank"><input type="submit" name="drukuj" value="Drukuj bliet" class="login-submit2" /></a></div>
+							<div class="wrapper koniec" style="padding-left: 50px"><a class="koniec" href="GenerowanieBiletu.php" target="_blank"><input type="submit" name="drukuj" value="Drukuj bliet" class="login-submit2 koniec" /></a></div>
 							<br>
 							<form class="nie" name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 							<div class="nie" class="wrapper" style="padding-left: 50px">	<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2 nie" /></div>
@@ -219,10 +219,6 @@ $data = date("Y-m-d");
 </div>
 <script type="text/javascript"> 
 	Cufon.now(); 
-
-	$('.koniec').click(function(){
-		$('.nie').prop('disabled', true);
-	});
 </script>
 </body>
 </html>

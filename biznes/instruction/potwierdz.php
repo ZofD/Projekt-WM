@@ -58,8 +58,8 @@
             $wyslij['idRepertuaru'] = $idRepertuar;
             $wyslij['iloscUczen'] = $iloscUczen;
             $wyslij['iloscStudent'] = $iloscStudent;
-            if($admin == 0) $wyslij['bilet'] = 0;
-            else $wyslij['bilet'] = 1;
+            if($admin > 0) $wyslij['bilet'] = 1;
+            else $wyslij['bilet'] = 0;
             $wyslij['miejsca'] = $miejsca;
             $wyslij['cena'] = $cena;
             $wyslij['imie'] = $imie; 
