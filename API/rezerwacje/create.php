@@ -32,7 +32,7 @@ try{
         $youCenRun = TRUE;
 
         $arrayMiejsca = $data['miejsca'];
-        var_dump($query);
+
         for($i = 0; $i < count($arrayMiejsca); $i++){
             $rezerwacjeMiejsca = new RezerwacjeMiejsca($db);
 

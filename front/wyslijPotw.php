@@ -36,16 +36,16 @@ $listonosz['admin'] = intval($_SESSION['admin']);
 $listonosz['cena'] = $_SESSION['cenaRez'];
 
 if(isset($_POST['zatwierdz'])){ 
-    var_dump(json_encode($listonosz));
     $ch = new ClientURL();
     $listonosz['idRezerwacji'] = intval($_GET['idRezerwacji']);
     $listonosz['akcja'] = 0;
     $ch->setPostURL($urlBiznes1, json_encode($listonosz));
     $fromBiznes = $ch->exec();
+    var_dump($fromBiznes);
     $fromBiznes = json_decode($fromBiznes, TRUE);
     var_dump($fromBiznes);
-    // if($fromBiznes['odp']) header('Location: index.php');
-    // else header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
+    if($fromBiznes['odp']) header('Location: index.php');
+    else header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
 }
 
 if(isset($_POST['drukuj'])){
