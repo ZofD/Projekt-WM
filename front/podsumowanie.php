@@ -166,18 +166,26 @@ $data = date("Y-m-d");
 									<p style="padding-left: 50px"><?php echo $data; ?></p>
 								<h4 style="padding-left: 50px">Cena biletów: </h4>
 									<p style="padding-left: 50px"><?php echo $cena; ?></p><br>
+								<?php if(!isset($_GET['pr'])){?>
 								<div class="wrapper" style="padding-left: 50px">
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
 								</div><br>
+								<?php
+									}
+								?>
 							</form>
 							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 								<?php
 									if(intval($_SESSION['admin']) == 1 || intval($_SESSION['admin']) == 2) echo "<div class='wrapper' style='padding-left: 50px'><input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /></div> <br>";
+									else{
 								?>
 							</form>
 							<form name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 							<div class="wrapper" style="padding-left: 50px">	<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" /></div>
 							</form>
+							<?php
+									}
+							?>
 						</div>
 					</div>
 				</div>
