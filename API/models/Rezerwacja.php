@@ -2,7 +2,7 @@
     class Rezerwacja{
         //baza
         private $conn;
-        private $table = 'rezerwacja';
+        public $table = 'rezerwacja';
 
         //wlasciwosci rezerwacji
         public $id_rezerwacji;
@@ -78,7 +78,8 @@
         private function getIdRezerwacji(){
             $query = 'SELECT id_rezerwacji FROM ' . $this->table . ' WHERE bilet = ' .
             $this->bilet . " AND user_id = " . $this->id_uzytkownikaFKRez . " AND ilosc_uczen_senior = " . $this->iloscUczen .
-            " AND ilosc_student = " . $this->iloscStudent . " AND id_repertuaru = " . $this->id_repertuaruFKRez;
+            " AND ilosc_student = " . $this->iloscStudent . " AND id_repertuaru = " . $this->id_repertuaruFKRez .
+            " AND cena = " . $this->cena . " AND imie = \"" . $this->imie . "\" AND nazwisko = \"" . $this->nazwisko . "\";";
 
             $stmt = $this->conn->prepare($query);
             $stmt->execute();

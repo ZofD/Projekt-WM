@@ -16,6 +16,7 @@ $index = intval($_GET['index']);
 
 $dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
 
+$listonosz['bilet'] = 0;
 $listonosz['data'] = $_SESSION['tytul'];//tytul
 $listonosz['godz'] = intval($dataRep->format('H'));
 $listonosz['min'] = intval($dataRep->format('i'));
@@ -40,6 +41,7 @@ if(isset($_POST['zatwierdz'])){
     $listonosz['akcja'] = 0;
     $ch->setPostURL($urlBiznes1, json_encode($listonosz));
     $fromBiznes = $ch->exec();
+    var_dump($fromBiznes);
     $fromBiznes = json_decode($fromBiznes, TRUE);
     var_dump($fromBiznes);
     if($fromBiznes['odp']) header('Location: index.php');
