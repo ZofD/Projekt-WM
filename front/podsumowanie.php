@@ -15,6 +15,7 @@ session_start();
 	// 	die('Proba przejecia sesji udaremniona!');	
 	// }
 include_once 'curl.php';
+include_once 'fpdf.php';
 $url = 'http://localhost:8080/WM/projekt/Projekt-WM/loadingPages/repertuar/read_single.php';
 $urlBiznes = 'http://localhost:8080/WM/projekt/Projekt-WM/biznes/instruction/rezerwuj.php';
 $urlRezerwacje = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/miejsca.php';
@@ -26,11 +27,24 @@ $wyslij['id'] = $_GET['id'];
 if(isset($_GET['pr'])){
 	$chRM = new ClientURL();
 	$chRM->setPostURL($urlRezerwacje, json_encode(array('idRezerwacji' => intval($_GET['id']))));
-	$miejsca = $chRM->exec();
-	$miejsca = json_decode($miejsca, TRUE);
-	$_POST['miejsca'] = $miejsca['miejsca'];
+	$miejsca2 = $chRM->exec();
+	$miejsca2 = json_decode($miejsca2, TRUE);
+	$_POST['miejsca'] = $miejsca2['miejsca'];
 	foreach($_POST['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
 	$cena = $_POST['cena'];
+
+	$urlRep = 'http://localhost:8080/WM/projekt/Projekt-WM/API/repertuar/read_single.php';
+	$chRep = new ClientURL();
+	$chRep->setPostURL($urlRep, json_encode(array("idRepertuaru" => $_POST['idRepertuaru'])));
+	$result = $chRep->exec();
+
+	$json = json_decode($result, TRUE);
+
+
+	$_SESSION['tytul'] = $json['film']['tytul'];
+	$_SESSION['dataRep'] = $json['repertuar']['data'];
+	$_SESSION['idSali'] = $json['repertuar']['id_saliFKRep'];
+	$_SESSION['idRepertuaru'] = $json['repertuar']['id_repertuaru'];
 }
 
 // $ch->setPostURL($url, $wyslij);
@@ -94,7 +108,9 @@ else{
 		$cena = $_SESSION['cenaRez'];
 	}else echo "to nie tak";
 }	 
-
+$pdf = new FPDF('L', 'mm', array(100, 150));
+// var_dump($pdf);
+// $pdf->Output();
 $data = date("Y-m-d");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -174,7 +190,10 @@ $data = date("Y-m-d");
 									}
 								?>
 							</form>
-							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
+							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>&idRezerwacji=<?php 
+								if(isset($_GET['idRezerwacji'])) echo $_GET['idRezerwacji']; 
+								else echo -1; 
+							?>" method="POST">
 								<?php
 									if(intval($_SESSION['admin']) == 1 || intval($_SESSION['admin']) == 2) echo "<div class='wrapper' style='padding-left: 50px'><input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /></div> <br>";
 									else{

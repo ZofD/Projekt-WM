@@ -7,7 +7,7 @@
 
     $ch = new ClientURL();
     $url = 'http://localhost:8080/WM/projekt/Projekt-WM/interfejs/potwierdzenie.php';
-    $urlBaza = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/';  //dokończyć
+    $urlBaza = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/bilet.php';  //dokończyć
 
     //odebranie danych
     header('Access-Control-Allow-Origin: *');
@@ -36,8 +36,8 @@
     $dzienTygodnia = mktime($godzina, $minuta, 0, $miesiac, $dzien, $rok);
 
     $Repertuar = new Repertuar($data, $godzina, $minuta, $miesiac, $dzien, $rok, $sala);
-    $Bilet = new Bilet($Repertuar, $imie, $nazwisko, $miejsca, $iloscUczen, $iloscStudent);
-    $doDruku = $Bilet->drukujBilet($sala, $data);
+    $Bilet = new Bilet($Repertuar, $imie, $nazwisko, $miejsca, $iloscUczen, $iloscStudent, $sala, $dzienTygodnia);
+    $doDruku = $Bilet->drukujBilet();
 
     $wyslij['idRezerwacji'] = $idRezerwacji;
     $ch->setPostURL($urlBaza, json_encode($wyslij));
