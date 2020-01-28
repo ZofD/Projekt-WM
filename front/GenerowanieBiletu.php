@@ -1,5 +1,6 @@
 <?php
 require('../fpdf.php');
+include_once 'curl.php';
 
 session_start();
 
@@ -67,6 +68,12 @@ function footer(){
 }
 
 // Instanciation of inherited class
+
+$urlBaza = 'http://localhost:8080/WM/projekt/Projekt-WM/API/rezerwacje/bilet.php';
+$ch = new ClientURL();
+$ch->setPostURL($urlBaza, json_encode(array('idRezerwacji' => $_SESSION['idRezerwacji']))); 
+$rez = $ch->exec();
+
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage('L', 'a5', 0);

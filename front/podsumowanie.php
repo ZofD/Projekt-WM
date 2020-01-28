@@ -32,9 +32,23 @@ if(isset($_GET['pr'])){
 	$_POST['miejsca'] = $miejsca2['miejsca'];
 	foreach($_POST['miejsca'] as $r => $dane) $miejsca [] = intval($dane);
 	$cena = $_POST['cena'];
+
+	$urlRep = 'http://localhost:8080/WM/projekt/Projekt-WM/API/repertuar/read_single.php';
+	$chRep = new ClientURL();
+	$chRep->setPostURL($urlRep, json_encode(array("idRepertuaru" => $_POST['idRepertuaru'])));
+	$result = $chRep->exec();
+
+	$json = json_decode($result, TRUE);
+
+
+	$_SESSION['tytul'] = $json['film']['tytul'];
+	$_SESSION['dataRep'] = $json['repertuar']['data'];
+	$_SESSION['idSali'] = $json['repertuar']['id_saliFKRep'];
+	$_SESSION['idRepertuaru'] = $json['repertuar']['id_repertuaru'];
+
 	$_SESSION['cenaRez'] = $cena;
 }
-
+$_SESSION['idRezerwacji'] = $wyslij['id'];
 // $ch->setPostURL($url, $wyslij);
 // $rezult = $ch->exec();
 if(isset($_POST['miejsca']) && isset($_POST['imie']) && isset($_POST['nazwisko']) && isset($_POST['iloscSzkolne']) && isset($_POST['iloscStudent'])){
@@ -170,9 +184,13 @@ $data = date("Y-m-d");
 									<p style="padding-left: 50px"><?php echo $data; ?></p>
 								<h4 style="padding-left: 50px">Cena biletów: </h4>
 									<p style="padding-left: 50px"><?php echo $cena; ?></p><br>
+								<?php if(!isset($_GET['pr'])){?>
 								<div class="wrapper" style="padding-left: 50px">
 								<input type="submit" name="zatwierdz" value="Zatwierdź rezerwację" class="login-submit2" />
 								</div><br>
+								<?php
+									}
+								?>
 							</form>
 							<div class="wrapper koniec" style="padding-left: 50px">
 							<?php
@@ -182,6 +200,7 @@ $data = date("Y-m-d");
 							<form class="nie" name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
 							<div class="nie" class="wrapper" style="padding-left: 50px">	<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2 nie" /></div>
 							</form>
+
 						</div>
 					</div>
 				</div>

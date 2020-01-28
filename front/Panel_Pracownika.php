@@ -358,6 +358,7 @@ $(document).ready(function(){
 							<input type="text" name="iloscSzkolne" value=<?php echo $dane['iloscUczen'];?> class="login-submit" style="display: none;"/>
 							<input type="text" name="iloscSzkolne" value=<?php echo $dane['iloscUczen'];?> class="login-submit" style="display: none;"/>
 							<input type="text" name="cena" value=<?php echo $dane['cena'];?> class="login-submit" style="display: none;"/>
+							<input type="text" name="idRepertuaru" value=<?php echo $dane['idRepertuaru'];?> class="login-submit" style="display: none;"/>
 							<td>
 							<input type="submit" name="rezerwacja" value="Potwierdź rezerwacje" class="login-submit"></input>
                         	</td>
