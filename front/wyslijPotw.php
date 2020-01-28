@@ -13,7 +13,7 @@ $urlBiznes2 = 'http://localhost:8080/WM/projekt/Projekt-WM/biznes/instruction/dr
 
 $wyslij['id'] = intval($_GET['id']);
 $index = intval($_GET['index']);
-var_dump($_SESSION);
+
 $dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
 
 $listonosz['data'] = $_SESSION['tytul'];//tytul
