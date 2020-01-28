@@ -16,6 +16,7 @@ $index = intval($_GET['index']);
 
 $dataRep = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['dataRep']);
 
+$listonosz['bilet'] = 0;
 $listonosz['data'] = $_SESSION['tytul'];//tytul
 $listonosz['godz'] = intval($dataRep->format('H'));
 $listonosz['min'] = intval($dataRep->format('i'));
@@ -35,6 +36,7 @@ $listonosz['admin'] = intval($_SESSION['admin']);
 $listonosz['cena'] = $_SESSION['cenaRez'];
 
 if(isset($_POST['zatwierdz'])){ 
+    var_dump(json_encode($listonosz));
     $ch = new ClientURL();
     $listonosz['idRezerwacji'] = intval($_GET['idRezerwacji']);
     $listonosz['akcja'] = 0;
@@ -42,8 +44,8 @@ if(isset($_POST['zatwierdz'])){
     $fromBiznes = $ch->exec();
     $fromBiznes = json_decode($fromBiznes, TRUE);
     var_dump($fromBiznes);
-    if($fromBiznes['odp']) header('Location: index.php');
-    else header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
+    // if($fromBiznes['odp']) header('Location: index.php');
+    // else header('Location: podsumowanie.php?id='.$wyslij['id'].'&index='.$index.'');
 }
 
 if(isset($_POST['drukuj'])){
