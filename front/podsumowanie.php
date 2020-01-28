@@ -45,8 +45,10 @@ if(isset($_GET['pr'])){
 	$_SESSION['dataRep'] = $json['repertuar']['data'];
 	$_SESSION['idSali'] = $json['repertuar']['id_saliFKRep'];
 	$_SESSION['idRepertuaru'] = $json['repertuar']['id_repertuaru'];
-}
 
+	$_SESSION['cenaRez'] = $cena;
+}
+$_SESSION['idRezerwacji'] = $wyslij['id'];
 // $ch->setPostURL($url, $wyslij);
 // $rezult = $ch->exec();
 if(isset($_POST['miejsca']) && isset($_POST['imie']) && isset($_POST['nazwisko']) && isset($_POST['iloscSzkolne']) && isset($_POST['iloscStudent'])){
@@ -190,21 +192,13 @@ $data = date("Y-m-d");
 									}
 								?>
 							</form>
-							<form name='drukuj' action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>&idRezerwacji=<?php 
-								if(isset($_GET['idRezerwacji'])) echo $_GET['idRezerwacji']; 
-								else echo -1; 
-							?>" method="POST">
-								<?php
-									if(intval($_SESSION['admin']) == 1 || intval($_SESSION['admin']) == 2) echo "<div class='wrapper' style='padding-left: 50px'><input type='submit' name='drukuj' value='Drukuj' class='login-submit2' /></div> <br>";
-									else{
-								?>
+
+							<div class="wrapper" style="padding-left: 50px"><a class="koniec" href="GenerowanieBiletu.php" target="_blank"><input type="submit" name="drukuj" value="Drukuj bliet" class="login-submit2" /></a></div>
+							<br>
+							<form class="nie" name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
+							<div class="nie" class="wrapper" style="padding-left: 50px">	<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2 nie" /></div>
 							</form>
-							<form name="anuluj" action="wyslijPotw.php?id=<?php echo $wyslij['id']; ?>&index=<?php echo $index; ?>" method="POST">
-							<div class="wrapper" style="padding-left: 50px">	<input type="submit" name="anuluj" value="Zrezygnuj" class="login-submit2" /></div>
-							</form>
-							<?php
-									}
-							?>
+
 						</div>
 					</div>
 				</div>
@@ -243,6 +237,12 @@ $data = date("Y-m-d");
 		</div>
 	</div>
 </div>
-<script type="text/javascript"> Cufon.now(); </script>
+<script type="text/javascript"> 
+	Cufon.now(); 
+
+	$('.koniec').click(function(){
+		$('.nie').prop('disabled', true);
+	});
+</script>
 </body>
 </html>
